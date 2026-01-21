@@ -1,21 +1,23 @@
-# Development artifacts
+# System Artifacts (Internal)
+*.resolved
+*.resolved.*
+*.md.metadata.json
+!metadata.json
+
+# OS Files
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+
+# IDE Files
+.idea/
+.vscode/
 *.swp
 *.swo
-*~
-.DS_Store
 
-# Editor directories
-.vscode/
-.idea/
-*.sublime-*
-
-# Temporary files
-tmp/
-temp/
-*.tmp
-
-# Research notes (optional - uncomment if you don't want to publish)
-# research/
-
-# OS files
-Thumbs.db
+# Go Binaries/Build
+*.exe
+*.test
+*.prof
+vendor/

@@ -80,7 +80,38 @@ This document lists all rules organized by category and priority.
 - **CRITICAL**: 8 rules (23%)
 - **HIGH**: 12 rules (34%)
 - **MEDIUM**: 10 rules (29%)
-- **ARCHITECTURE**: 5 rules (14%)
+- **ARCHITECTURE**: 5 rules (12%)
+
+---
+
+## Design Patterns & Refactoring (Priority 2-3) - 13 Rules
+
+**Impact**: Code quality, maintainability, and readability
+
+| Rule | File | Impact |
+|------|------|--------|
+| God Object | `high-god-object.md` | Extract 300+ line functions |
+| Extract Method | `high-extract-method.md` | Name complex blocks |
+| Primitive Obsession | `medium-primitive-obsession.md` | Value objects over primitives |
+| Long Parameter List | `medium-long-parameter-list.md` | Parameter objects |
+| Data Clumps | `medium-data-clumps.md` | Extract repeated params |
+| Feature Envy | `medium-feature-envy.md` | Move logic to data |
+| Magic Constants | `medium-magic-constants.md` | Named constants |
+| Builder Pattern | `medium-builder-pattern.md` | Fluent construction |
+| Factory Constructor | `medium-factory-constructor.md` | Validated creation |
+| Parameter Object | `medium-introduce-parameter-object.md` | Group params |
+| Switch to Strategy | `medium-switch-to-strategy.md` | Polymorphism |
+| Middleware Decorator | `medium-middleware-decorator.md` | Decorator pattern |
+| Law of Demeter | `medium-law-of-demeter.md` | Reduce coupling |
+
+---
+
+## Total: 43 Rules (Updated v1.1.0)
+
+- **CRITICAL**: 8 rules (19%)
+- **HIGH**: 14 rules (33%)
+- **MEDIUM**: 21 rules (49%)
+- **ARCHITECTURE**: 5 rules (12%)
 
 ---
 

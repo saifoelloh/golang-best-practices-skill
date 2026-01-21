@@ -4,17 +4,20 @@ description: Go code review and optimization skill. Use when asked to "review Go
 license: MIT
 metadata:
   author: ekuid
-  version: "1.0.0"
+  version: "1.1.0"
   sources:
     - "Learning Go: An Idiomatic Approach (Jon Bodner)"
     - "Concurrency in Go (Katherine Cox-Buday)"
     - "Clean Architecture (Robert C. Martin)"
-  last_updated: "2026-01-21"
+    - "Refactoring (Martin Fowler)"
+    - "Design Patterns (Gang of Four)"
+    - "Refactoring.Guru"
+  last_updated: "2026-01-22"
 ---
 
 # Golang Best Practices
 
-Comprehensive Go code review skill based on authoritative sources. Contains 35+ rules across 8 categories, prioritized by impact to guide code reviews, refactoring, and optimization.
+Comprehensive Go code review skill based on authoritative sources. Contains 43 rules across 8 categories, prioritized by impact to guide code reviews, refactoring, and optimization.
 
 ## When to Apply
 
@@ -31,8 +34,8 @@ Use this skill when:
 | Priority | Category | Impact | Prefix | Rule Count |
 |----------|----------|--------|--------|------------|
 | 1 | Critical Issues | CRITICAL | `critical-` | 8 |
-| 2 | High-Impact Patterns | HIGH | `high-` | 12 |
-| 3 | Medium Improvements | MEDIUM | `medium-` | 10 |
+| 2 | High-Impact Patterns | HIGH | `high-` | 14 |
+| 3 | Medium Improvements | MEDIUM | `medium-` | 21 |
 | 4 | Architecture | ARCHITECTURE | `arch-` | 5 |
 
 ## Quick Reference
@@ -66,6 +69,8 @@ Use this skill when:
 - `high-business-logic-repository` - No business logic in data layer
 - `high-constructor-creates-deps` - Inject dependencies, don't create
 - `high-transaction-in-repository` - Transactions belong in usecase
+- `high-god-object` - Extract logic from 300+ line functions
+- `high-extract-method` - Name complex code blocks with descriptive methods
 
 ### 3. Medium Improvements (MEDIUM)
 
@@ -81,6 +86,17 @@ Use this skill when:
 - `medium-usecase-complexity` - Move business logic to domain entities
 - `medium-interface-in-implementation` - Define interfaces where used
 - `medium-sentinel-error-usage` - Use sentinel errors for stable categories
+- `medium-primitive-obsession` - Replace primitives with value objects
+- `medium-long-parameter-list` - Use parameter objects for >5 params
+- `medium-data-clumps` - Extract repeated parameter groups
+- `medium-feature-envy` - Move logic closer to data
+- `medium-magic-constants` - Replace magic numbers with named constants
+- `medium-builder-pattern` - Fluent API for complex construction
+- `medium-factory-constructor` - Validated object creation
+- `medium-introduce-parameter-object` - Group related parameters
+- `medium-switch-to-strategy` - Replace type switches with interfaces
+- `medium-middleware-decorator` - Decorator pattern for http.Handler
+- `medium-law-of-demeter` - Reduce coupling, avoid message chains
 
 ### 4. Architecture (ARCHITECTURE)
 

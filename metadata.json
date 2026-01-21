@@ -2,7 +2,7 @@
   "name": "golang-best-practices",
   "displayName": "Golang Best Practices",
   "description": "Production-ready Go code review skill based on authoritative sources",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": {
     "name": "saifoelloh",
     "email": "saifoelloh@gmail.com",
@@ -29,12 +29,14 @@
     "architecture",
     "quality-assurance"
   ],
-  "languages": ["go"],
+  "languages": [
+    "go"
+  ],
   "rules": {
-    "total": 30,
+    "total": 43,
     "critical": 8,
-    "high": 12,
-    "medium": 10
+    "high": 14,
+    "medium": 21
   },
   "sources": [
     "Learning Go: An Idiomatic Approach by Jon Bodner",
@@ -43,7 +45,7 @@
   ],
   "features": [
     "Evidence-based rules from authoritative sources",
-    "30 comprehensive rules across 3 priority levels",
+    "43 comprehensive rules covering bugs, architecture, and design patterns",
     "Production-tested on real codebases",
     "Clean Architecture compliance checking",
     "Concurrency anti-pattern detection",

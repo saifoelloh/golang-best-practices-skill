@@ -3,22 +3,25 @@
 > Production-ready Go code review skill for AI agents based on authoritative sources
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Rules](https://img.shields.io/badge/Rules-30-blue.svg)](./rules)
-[![Version](https://img.shields.io/badge/Version-1.0.0-green.svg)](./metadata.json)
+[![Rules](https://img.shields.io/badge/Rules-43-blue.svg)](./rules)
+[![Version](https://img.shields.io/badge/Version-1.1.0-green.svg)](./metadata.json)
 
 A comprehensive skill for reviewing Go code, finding anti-patterns, and enforcing best practices across error handling, concurrency, architecture, and idiomatic Go patterns.
 
 ## 📋 Overview
 
-This skill contains **30 rules** across 3 priority levels:
+This skill contains **43 rules** across 3 priority levels:
 - **8 CRITICAL** - Prevents production bugs, crashes, and failures
-- **12 HIGH** - Improves reliability and architecture
-- **10 MEDIUM** - Enhances code quality and idioms
+- **14 HIGH** - Improves reliability and architecture
+- **21 MEDIUM** - Enhances code quality and idioms
 
 All rules are evidence-based from authoritative sources:
 - "Learning Go: An Idiomatic Approach" by Jon Bodner
 - "Concurrency in Go" by Katherine Cox-Buday  
 - "Clean Architecture" by Robert C. Martin
+- "Refactoring" by Martin Fowler
+- "Design Patterns" by Gang of Four
+- Refactoring.Guru
 
 ## 🚀 Quick Start
 
@@ -73,6 +76,8 @@ Reliability and architecture patterns for production code:
 - `high-business-logic-repository` - Data layer contains business rules
 - `high-constructor-creates-deps` - Untestable tight coupling
 - `high-transaction-in-repository` - Can't compose atomic operations
+- `high-god-object` - Extract logic from 300+ line functions
+- `high-extract-method` - Name complex code blocks
 
 ### MEDIUM Priority (10 rules)
 
