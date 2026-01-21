@@ -1,0 +1,21 @@
+# Development artifacts
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Editor directories
+.vscode/
+.idea/
+*.sublime-*
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Research notes (optional - uncomment if you don't want to publish)
+# research/
+
+# OS files
+Thumbs.db

@@ -1,0 +1,274 @@
+# Golang Best Practices Skill
+
+> Production-ready Go code review skill for AI agents based on authoritative sources
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Rules](https://img.shields.io/badge/Rules-30-blue.svg)](./rules)
+[![Version](https://img.shields.io/badge/Version-1.0.0-green.svg)](./metadata.json)
+
+A comprehensive skill for reviewing Go code, finding anti-patterns, and enforcing best practices across error handling, concurrency, architecture, and idiomatic Go patterns.
+
+## 📋 Overview
+
+This skill contains **30 rules** across 3 priority levels:
+- **8 CRITICAL** - Prevents production bugs, crashes, and failures
+- **12 HIGH** - Improves reliability and architecture
+- **10 MEDIUM** - Enhances code quality and idioms
+
+All rules are evidence-based from authoritative sources:
+- "Learning Go: An Idiomatic Approach" by Jon Bodner
+- "Concurrency in Go" by Katherine Cox-Buday  
+- "Clean Architecture" by Robert C. Martin
+
+## 🚀 Quick Start
+
+### Installation
+
+Copy the `golang-best-practices` directory to your skills location:
+
+```bash
+# Clone or copy to your skills directory
+cp -r golang-best-practices ~/.agent-skills/
+```
+
+### Usage
+
+Activate the skill by asking your AI agent:
+
+```
+"Review my Go code for anti-patterns"
+"Check this file for goroutine leaks"
+"Is this idiomatic Go?"
+"Audit my code for Clean Architecture violations"
+```
+
+## 📚 Rule Categories
+
+### CRITICAL Issues (8 rules)
+
+Production-breaking issues that cause bugs, crashes, or security vulnerabilities:
+
+- `critical-error-wrapping` - Error chains lost without %w
+- `critical-defer-in-loop` - Resource leaks from deferred closes
+- `critical-context-leak` - Goroutine leaks without defer cancel()
+- `critical-error-shadow` - Silent error loss from variable shadowing
+- `critical-goroutine-leak` - Memory leaks from unbounded goroutines
+- `critical-race-condition` - Data corruption from concurrent access
+- `critical-channel-deadlock` - Program freezes from channel misuse
+- `critical-close-panic` - Runtime panics from improper channel closing
+
+### HIGH Priority (12 rules)
+
+Reliability and architecture patterns for production code:
+
+- `high-pointer-receiver` - Methods that don't modify as expected
+- `high-error-is-as` - Error handling breaks with wrapped errors
+- `high-business-logic-handler` - Violates Clean Architecture
+- `high-context-propagation` - Timeouts and cancellation don't work
+- `high-interface-nil` - Unexpected nil interface behavior
+- `high-goroutine-unbounded` - Resource exhaustion from unlimited concurrency
+- `high-channel-not-closed` - Goroutine leaks waiting on channels
+- `high-loop-variable-capture` - All goroutines see same loop value
+- `high-waitgroup-mismatch` - Deadlocks from Add/Done mismatches
+- `high-business-logic-repository` - Data layer contains business rules
+- `high-constructor-creates-deps` - Untestable tight coupling
+- `high-transaction-in-repository` - Can't compose atomic operations
+
+### MEDIUM Priority (10 rules)
+
+Code quality and idiomatic Go patterns:
+
+- `medium-interface-pollution` - Fat interfaces hard to implement
+- `medium-accept-interface-return-struct` - API flexibility pattern
+- `medium-pointer-overuse` - Unnecessary heap allocations
+- `medium-directional-channels` - Compile-time channel safety
+- `medium-buffered-channel-size` - Correct buffer sizing
+- `medium-select-default` - Avoiding busy-wait CPU waste
+- `medium-usecase-complexity` - Rich domain models vs fat usecases
+- `medium-interface-in-implementation` - Dependency inversion
+- `medium-sentinel-error-usage` - Consistent error handling
+- `medium-nil-pointer-check` - Defensive nil checking
+
+## 📖 Examples
+
+### Code Review
+
+Ask your AI agent to review a file:
+
+```
+Review this usecase for Clean Architecture violations
+```
+
+**Output:**
+```
+## High Priority Issues: 2
+
+### [high-business-logic-repository] (Line 142)
+**Issue**: Complex business logic in repository layer
+**Fix**: Move calculation to usecase or domain entity
+**Example**:
+```go
+// ✅ Move to entity
+func (o *Order) CalculateTotal() int64 {
+    return o.Quantity * o.UnitPrice
+}
+```
+
+### Error Detection
+
+```
+Check for goroutine leaks in this file
+```
+
+The skill will detect:
+- Goroutines without exit conditions
+- Missing context cancellation
+- Unbounded goroutine creation
+- Channel operations without cleanup
+
+### Architecture Audit
+
+```
+Verify this follows Clean Architecture
+```
+
+Reviews:
+- Handler/usecase/repository separation
+- Dependency injection patterns
+- Business logic placement
+- Transaction boundaries
+
+## 🏗️ Structure
+
+```
+golang-best-practices/
+├── SKILL.md              # Main skill definition
+├── metadata.json         # Skill metadata
+├── LICENSE              # MIT License
+├── README.md            # This file
+├── rules/
+│   ├── _template.md     # Rule template
+│   ├── _categories.md   # Rule index
+│   ├── critical-*.md    # 8 critical rules
+│   ├── high-*.md        # 12 high priority rules
+│   └── medium-*.md      # 10 medium priority rules
+└── references/
+    └── error-handling-guide.md
+```
+
+## ✨ Features
+
+- **Evidence-Based**: All rules cite authoritative sources
+- **Actionable**: Every rule includes before/after examples
+- **Prioritized**: Focus on critical issues first
+- **Production-Tested**: Validated on real codebases
+- **Architecture-Aware**: Tailored for gRPC/Clean Architecture
+
+## 🎯 Use Cases
+
+### Code Reviews
+Automatically detect anti-patterns during PR reviews
+
+### Refactoring
+Identify technical debt and improvement opportunities
+
+### Onboarding
+Help junior developers learn Go best practices
+
+### Architecture Audits
+Ensure Clean Architecture compliance
+
+### CI/CD Integration
+Gate deployments on critical rule compliance
+
+## 📝 Rule Format
+
+Each rule follows a consistent format:
+
+```markdown
+---
+title: Rule Title
+impact: CRITICAL | HIGH | MEDIUM
+impactDescription: What breaks
+tags: keywords
+source: Book reference
+---
+
+## Detection
+How to spot the issue
+
+## Incorrect Example
+❌ Anti-pattern with explanation
+
+## Correct Example
+✅ Best practice with explanation
+
+## References
+Links to documentation
+```
+
+## 🔍 Coverage
+
+### By Topic
+- Error Handling (5 rules)
+- Concurrency (9 rules)
+- Clean Architecture (6 rules)
+- Context Management (2 rules)
+- Interface Design (3 rules)
+- Pointers & Memory (3 rules)
+- Performance (2 rules)
+
+### By Codebase Pattern
+- gRPC handlers
+- Usecase orchestration
+- Repository patterns
+- GORM usage
+- Context propagation
+
+## 🤝 Contributing
+
+Contributions welcome! To add a rule:
+
+1. Use `rules/_template.md` as starting point
+2. Include before/after code examples
+3. Cite authoritative source
+4. Add to `rules/_categories.md`
+5. Update `SKILL.md` quick reference
+
+## 📚 References
+
+### Books
+- [Learning Go](https://www.oreilly.com/library/view/learning-go/9781492077206/) by Jon Bodner
+- [Concurrency in Go](https://www.oreilly.com/library/view/concurrency-in-go/9781491941294/) by Katherine Cox-Buday
+- [Clean Architecture](https://www.oreilly.com/library/view/clean-architecture-a/9780134494272/) by Robert C. Martin
+
+### Online Resources
+- [Effective Go](https://go.dev/doc/effective_go)
+- [Go Code Review Comments](https://github.com/golang/go/wiki/CodeReviewComments)
+- [Uber Go Style Guide](https://github.com/uber-go/guide/blob/master/style.md)
+
+## 📄 License
+
+MIT License - see [LICENSE](./LICENSE) file for details
+
+## 🙏 Acknowledgments
+
+- Jon Bodner for "Learning Go"
+- Katherine Cox-Buday for "Concurrency in Go"
+- Robert C. Martin for "Clean Architecture"
+- The Go team for excellent documentation
+
+## 👤 Author
+
+**saifoelloh**
+- Email: saifoelloh@gmail.com
+- GitHub: [@saifoelloh](https://github.com/saifoelloh)
+- Repository: [golang-best-practices-skill](https://github.com/saifoelloh/golang-best-practices-skill)
+
+## 📞 Support
+
+For issues or questions, please open an issue in the repository.
+
+---
+
+**Built with ❤️ for better Go code**

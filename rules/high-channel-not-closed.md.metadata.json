@@ -1,0 +1,5 @@
+{
+  "artifactType": "ARTIFACT_TYPE_OTHER",
+  "summary": "Rule for closing channels when done sending to prevent goroutine leaks. Covers producer responsibility and range loop termination.",
+  "updatedAt": "2026-01-21T16:22:11.660315Z"
+}

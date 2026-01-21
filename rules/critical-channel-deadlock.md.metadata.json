@@ -1,0 +1,5 @@
+{
+  "artifactType": "ARTIFACT_TYPE_OTHER",
+  "summary": "Rule preventing channel deadlocks by ensuring paired send/receive operations. Explains blocking behavior, unbuffered vs buffered channels, detection patterns for unpaired operations, and solutions using goroutines, buffered channels, and select statements with timeouts.",
+  "updatedAt": "2026-01-21T15:58:33.274262Z"
+}

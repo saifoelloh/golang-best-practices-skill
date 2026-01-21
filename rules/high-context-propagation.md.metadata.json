@@ -1,0 +1,5 @@
+{
+  "artifactType": "ARTIFACT_TYPE_OTHER",
+  "summary": "Rule for propagating context through call chains for cancellation and timeout support. Covers context.Background vs context.TODO, breaking cancellation chains, and proper context parameter patterns.",
+  "updatedAt": "2026-01-21T16:21:17.597496Z"
+}

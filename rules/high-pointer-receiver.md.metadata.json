@@ -1,0 +1,5 @@
+{
+  "artifactType": "ARTIFACT_TYPE_OTHER",
+  "summary": "Rule for using pointer receivers when methods modify struct state. Explains value vs pointer receiver semantics, method set consistency, performance implications for large structs, and when to use each type with decision flowchart.",
+  "updatedAt": "2026-01-21T16:17:42.158271Z"
+}

@@ -1,0 +1,5 @@
+{
+  "artifactType": "ARTIFACT_TYPE_OTHER",
+  "summary": "Rule against using select with default for polling (busy-wait). Promotes proper blocking patterns or tickers for periodic checks.",
+  "updatedAt": "2026-01-21T16:28:48.650250Z"
+}

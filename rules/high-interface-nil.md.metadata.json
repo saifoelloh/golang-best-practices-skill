@@ -1,0 +1,5 @@
+{
+  "artifactType": "ARTIFACT_TYPE_OTHER",
+  "summary": "Rule for checking interface nil correctly. Explains typed nil vs untyped nil interface gotcha and proper nil checking patterns.",
+  "updatedAt": "2026-01-21T16:22:27.074922Z"
+}

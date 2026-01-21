@@ -1,0 +1,5 @@
+{
+  "artifactType": "ARTIFACT_TYPE_OTHER",
+  "summary": "Rule for proper error comparison using errors.Is and errors.As instead of direct equality. Explains wrapped error inspection, sentinel error checking patterns, and custom error type extraction from error chains.",
+  "updatedAt": "2026-01-21T16:17:42.163110Z"
+}

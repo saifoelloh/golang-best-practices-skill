@@ -1,0 +1,5 @@
+{
+  "artifactType": "ARTIFACT_TYPE_OTHER",
+  "summary": "Rule requiring defer cancel() after creating contexts with timeout/deadline/cancellation. Prevents goroutine and resource leaks by ensuring context cleanup even when timeouts expire naturally.",
+  "updatedAt": "2026-01-21T15:52:36.441257Z"
+}

@@ -1,0 +1,5 @@
+{
+  "artifactType": "ARTIFACT_TYPE_OTHER",
+  "summary": "Category index listing all 35 Go best practice rules organized by priority: 8 CRITICAL rules (error handling, concurrency, resource management), 12 HIGH rules (patterns and architecture), 10 MEDIUM rules (code quality), and 5 ARCHITECTURE rules (Clean Architecture compliance). Includes rule names, impacts, and file references.",
+  "updatedAt": "2026-01-21T15:48:27.703949Z"
+}

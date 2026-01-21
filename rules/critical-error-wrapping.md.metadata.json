@@ -1,0 +1,5 @@
+{
+  "artifactType": "ARTIFACT_TYPE_OTHER",
+  "summary": "Rule for proper error wrapping in Go using %w instead of %v. Explains why preserving error chains is critical for debugging, shows detection patterns, incorrect/correct examples, and references Go 1.13+ error wrapping features from 'Learning Go' by Jon Bodner.",
+  "updatedAt": "2026-01-21T15:51:51.679171Z"
+}

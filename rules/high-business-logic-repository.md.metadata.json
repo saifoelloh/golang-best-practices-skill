@@ -1,0 +1,5 @@
+{
+  "artifactType": "ARTIFACT_TYPE_OTHER",
+  "summary": "Rule for preventing business logic in repository layer. Explains Clean Architecture data access separation, detection of complex WHERE clauses and calculations in repos, and proper usecase/repository division.",
+  "updatedAt": "2026-01-21T16:21:17.602522Z"
+}

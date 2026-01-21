@@ -1,0 +1,54 @@
+{
+  "name": "golang-best-practices",
+  "displayName": "Golang Best Practices",
+  "description": "Production-ready Go code review skill based on authoritative sources",
+  "version": "1.0.0",
+  "author": {
+    "name": "saifoelloh",
+    "email": "saifoelloh@gmail.com",
+    "github": "https://github.com/saifoelloh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/saifoelloh/golang-best-practices-skill.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "golang",
+    "go",
+    "best-practices",
+    "code-review",
+    "anti-patterns",
+    "clean-architecture",
+    "concurrency",
+    "error-handling"
+  ],
+  "categories": [
+    "code-review",
+    "linting",
+    "architecture",
+    "quality-assurance"
+  ],
+  "languages": ["go"],
+  "rules": {
+    "total": 30,
+    "critical": 8,
+    "high": 12,
+    "medium": 10
+  },
+  "sources": [
+    "Learning Go: An Idiomatic Approach by Jon Bodner",
+    "Concurrency in Go by Katherine Cox-Buday",
+    "Clean Architecture by Robert C. Martin"
+  ],
+  "features": [
+    "Evidence-based rules from authoritative sources",
+    "30 comprehensive rules across 3 priority levels",
+    "Production-tested on real codebases",
+    "Clean Architecture compliance checking",
+    "Concurrency anti-pattern detection",
+    "Error handling best practices"
+  ],
+  "created": "2026-01-21",
+  "updated": "2026-01-22"
+}

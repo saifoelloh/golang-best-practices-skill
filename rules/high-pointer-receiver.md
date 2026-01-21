@@ -1,0 +1,303 @@
+---
+title: Use Pointer Receivers for Mutations
+impact: HIGH
+impactDescription: Methods that modify state but use value receivers don't work as expected
+tags: methods, receivers, pointers, struct, mutation
+source: Learning Go - Chapter 7 (Types and Methods)
+---
+
+## Use Pointer Receivers for Mutations
+
+When a method needs to modify the receiver, use a pointer receiver. Value receivers work on a copy, so modifications are lost when the method returns.
+
+**Impact**: HIGH - Methods appear to work but don't actually modify state
+
+### Detection
+
+How to spot this issue:
+- Methods with value receiver `(t Type)` that modify fields
+- Methods that should persist changes but don't
+- Inconsistent receiver types across methods on same type
+- Pattern: `func (t Type) SetField()` instead of `func (t *Type) SetField()`
+
+### Incorrect (Anti-Pattern)
+
+```go
+// ❌ BAD - Value receiver doesn't modify original
+type Counter struct {
+    count int
+}
+
+func (c Counter) Increment() {
+    c.count++  // Modifies COPY, not original!
+}
+
+func (c Counter) Add(n int) {
+    c.count += n  // Also modifies copy
+}
+
+func (c Counter) GetCount() int {
+    return c.count
+}
+
+// Usage
+counter := Counter{count: 0}
+counter.Increment()
+counter.Add(5)
+fmt.Println(counter.GetCount())  // Output: 0 (NOT 6!)
+```
+
+**Why this is wrong**:
+- Value receiver copies the struct
+- Modifications affect only the copy
+- Original struct unchanged
+- Methods appear broken to users
+
+### Correct (Best Practice)
+
+```go
+// ✅ GOOD - Pointer receiver modifies original
+type Counter struct {
+    count int
+}
+
+func (c *Counter) Increment() {
+    c.count++  // Modifies original!
+}
+
+func (c *Counter) Add(n int) {
+    c.count += n  // Modifies original
+}
+
+func (c *Counter) GetCount() int {
+    return c.count  // Read-only, but pointer for consistency
+}
+
+// Usage
+counter := Counter{count: 0}
+counter.Increment()
+counter.Add(5)
+fmt.Println(counter.GetCount())  // Output: 6 ✅
+```
+
+**Why this is better**:
+- Modifications persist
+- Behavior matches user expectations
+- Consistent receiver types
+- Clear intent (this method mutates)
+
+### When to Use Each Type
+
+**Use Pointer Receiver When**:
+1. Method modifies the receiver
+2. Receiver is a large struct (avoid copying)
+3. Consistency: if any method uses pointer, all should
+
+**Use Value Receiver When**:
+1. Method doesn't modify receiver
+2. Receiver is small (primitives, small structs)
+3. Receiver is map, func, or chan (already references)
+
+### Real-World Example
+
+```go
+// ❌ BAD - Account balance never changes
+type BankAccount struct {
+    balance float64
+}
+
+func (a BankAccount) Deposit(amount float64) {
+    a.balance += amount  // Lost!
+}
+
+func (a BankAccount) Withdraw(amount float64) error {
+    if a.balance < amount {
+        return errors.New("insufficient funds")
+    }
+    a.balance -= amount  // Lost!
+    return nil
+}
+
+// Critical bug in production!
+account := BankAccount{balance: 100}
+account.Deposit(50)
+account.Withdraw(30)
+fmt.Println(account.balance)  // Still 100! Money lost!
+```
+
+```go
+// ✅ GOOD - Transactions work correctly
+type BankAccount struct {
+    balance float64
+}
+
+func (a *BankAccount) Deposit(amount float64) {
+    a.balance += amount  // Persisted!
+}
+
+func (a *BankAccount) Withdraw(amount float64) error {
+    if a.balance < amount {
+        return errors.New("insufficient funds")
+    }
+    a.balance -= amount  // Persisted!
+    return nil
+}
+
+// Works correctly
+account := BankAccount{balance: 100}
+account.Deposit(50)
+account.Withdraw(30)
+fmt.Println(account.balance)  // 120 ✅
+```
+
+### Consistency Rule
+
+```go
+// ❌ BAD - Inconsistent receivers
+type User struct {
+    name  string
+    email string
+}
+
+func (u User) SetName(name string) {  // Value
+    u.name = name
+}
+
+func (u *User) SetEmail(email string) {  // Pointer
+    u.email = email
+}
+
+// ✅ GOOD - Consistent receivers
+type User struct {
+    name  string
+    email string
+}
+
+func (u *User) SetName(name string) {  // All pointer
+    u.name = name
+}
+
+func (u *User) SetEmail(email string) {  // All pointer
+    u.email = email
+}
+
+func (u *User) GetName() string {  // Pointer for consistency
+    return u.name
+}
+```
+
+### Performance Considerations
+
+```go
+// Large struct
+type LargeStruct struct {
+    data [1000]int
+    // ... many fields
+}
+
+// ❌ BAD - Copies 8KB on every call
+func (l LargeStruct) Process() {
+    // Method body
+}
+
+// ✅ GOOD - Passes pointer (8 bytes)
+func (l *LargeStruct) Process() {
+    // Method body
+}
+```
+
+### Method Set and Interfaces
+
+```go
+type Incrementer interface {
+    Increment()
+}
+
+type Counter struct {
+    count int
+}
+
+// Value receiver
+func (c Counter) Increment() {
+    c.count++
+}
+
+// This compiles but doesn't work as expected
+var inc Incrementer = Counter{}  // Works
+inc.Increment()  // Doesn't modify anything!
+
+// ✅ With pointer receiver
+func (c *Counter) Increment() {
+    c.count++
+}
+
+var inc Incrementer = &Counter{}  // Must use pointer
+inc.Increment()  // Works correctly
+```
+
+### Additional Context
+
+**Go's method call syntax sugar**:
+
+```go
+type User struct {
+    name string
+}
+
+func (u *User) SetName(name string) {
+    u.name = name
+}
+
+// Both work (Go rewrites automatically)
+user := User{}
+user.SetName("Alice")      // Go rewrites to: (&user).SetName("Alice")
+(&user).SetName("Alice")   // Explicit
+```
+
+**Small types that should use value receivers**:
+
+```go
+type Point struct {
+    X, Y int
+}
+
+// ✅ Value receiver is fine (small, immutable)
+func (p Point) Distance(other Point) float64 {
+    dx := float64(p.X - other.X)
+    dy := float64(p.Y - other.Y)
+    return math.Sqrt(dx*dx + dy*dy)
+}
+```
+
+### Quick Decision Tree
+
+**Does the method modify the receiver?**
+- Yes → **Use pointer receiver**
+- No → **Continue**
+
+**Is the receiver large (>100 bytes)?**
+- Yes → **Use pointer receiver**
+- No → **Continue**
+
+**Do other methods use pointer receivers?**
+- Yes → **Use pointer receiver (consistency)**
+- No → **Use value receiver**
+
+**Checklist**:
+- [ ] Modifying methods use pointer receivers
+- [ ] All methods on type use same receiver type
+- [ ] Large structs use pointer receivers
+- [ ] Small, immutable types can use value receivers
+
+### References
+
+- "Learning Go" by Jon Bodner - Chapter 7: Types, Methods, and Interfaces
+- [Effective Go: Pointers vs Values](https://go.dev/doc/effective_go#pointers_vs_values)
+- [Go FAQ: Method Receivers](https://go.dev/doc/faq#methods_on_values_or_pointers)
+
+---
+
+**Rule Version**: 1.0  
+**Last Updated**: 2026-01-21  
+**Priority**: HIGH  
+**Auto-fixable**: Partially (linter can detect mutations with value receiver)

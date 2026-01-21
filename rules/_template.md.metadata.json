@@ -1,0 +1,5 @@
+{
+  "artifactType": "ARTIFACT_TYPE_OTHER",
+  "summary": "Template for creating new Go best practice rules. Defines standard YAML frontmatter structure (title, impact, tags, source) and markdown format with sections for rule explanation, incorrect/correct code examples, detection criteria, fix instructions, and references.",
+  "updatedAt": "2026-01-21T15:47:53.602165Z"
+}
