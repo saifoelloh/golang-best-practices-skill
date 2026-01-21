@@ -1,5 +1,0 @@
-{
-  "artifactType": "ARTIFACT_TYPE_OTHER",
-  "summary": "Rule for 'accept interfaces, return structs' API design pattern. Improves flexibility for callers while maintaining concrete return types for evolution.",
-  "updatedAt": "2026-01-21T16:28:15.673340Z"
-}

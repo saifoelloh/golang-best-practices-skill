@@ -1,5 +1,0 @@
-{
-  "artifactType": "ARTIFACT_TYPE_OTHER",
-  "summary": "Rule for using worker pools to limit concurrent goroutines. Prevents resource exhaustion from unbounded goroutine creation with examples of semaphore patterns and worker pool implementations.",
-  "updatedAt": "2026-01-21T16:21:48.996694Z"
-}

@@ -1,5 +1,0 @@
-{
-  "artifactType": "ARTIFACT_TYPE_OTHER",
-  "summary": "Rule for using directional channels (send-only or receive-only) to enforce compile-time communication patterns and prevent misuse.",
-  "updatedAt": "2026-01-21T16:28:30.930973Z"
-}

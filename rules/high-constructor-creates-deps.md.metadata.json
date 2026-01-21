@@ -1,5 +1,0 @@
-{
-  "artifactType": "ARTIFACT_TYPE_OTHER",
-  "summary": "Rule for injecting dependencies via constructors instead of creating them internally. Covers dependency inversion principle and testability patterns.",
-  "updatedAt": "2026-01-21T16:21:57.019087Z"
-}

@@ -1,5 +1,0 @@
-{
-  "artifactType": "ARTIFACT_TYPE_OTHER",
-  "summary": "Comprehensive error handling guide for Go covering error wrapping with %w, sentinel errors, custom error types, errors.Is/As usage, error design patterns, panic/recover, and best practices from 'Learning Go' by Jon Bodner. Includes 15+ code examples and decision trees for error handling strategies.",
-  "updatedAt": "2026-01-21T15:49:20.754986Z"
-}

@@ -1,5 +1,0 @@
-{
-  "artifactType": "ARTIFACT_TYPE_OTHER",
-  "summary": "Rule for keeping interfaces small and focused (under 5 methods). Explains Interface Segregation Principle, fat interface detection, and splitting strategies for better testability and flexibility.",
-  "updatedAt": "2026-01-21T16:28:07.597496Z"
-}

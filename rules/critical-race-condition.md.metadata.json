@@ -1,5 +1,0 @@
-{
-  "artifactType": "ARTIFACT_TYPE_OTHER",
-  "summary": "Rule preventing race conditions by protecting shared state with synchronization primitives. Shows detection patterns for unprotected concurrent access, examples of data races with maps/slices/variables, and solutions using sync.Mutex, sync.RWMutex, and channels.",
-  "updatedAt": "2026-01-21T15:54:55.078449Z"
-}

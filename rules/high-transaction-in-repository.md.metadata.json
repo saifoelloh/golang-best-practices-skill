@@ -1,5 +1,0 @@
-{
-  "artifactType": "ARTIFACT_TYPE_OTHER",
-  "summary": "Rule for managing transactions in usecase layer, not repository. Explains Clean Architecture transaction boundaries and GORM transaction patterns.",
-  "updatedAt": "2026-01-21T16:22:03.877578Z"
-}

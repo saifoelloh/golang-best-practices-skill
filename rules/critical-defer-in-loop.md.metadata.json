@@ -1,5 +1,0 @@
-{
-  "artifactType": "ARTIFACT_TYPE_OTHER",
-  "summary": "Rule preventing defer statements inside loops which cause resource leaks. Explains how defer accumulates until function end, not loop iteration. Shows detection patterns, file handle leak examples, and proper solutions using helper functions.",
-  "updatedAt": "2026-01-21T15:51:51.713716Z"
-}

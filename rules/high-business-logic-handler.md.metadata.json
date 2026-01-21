@@ -1,5 +1,0 @@
-{
-  "artifactType": "ARTIFACT_TYPE_OTHER",
-  "summary": "Rule preventing business logic in delivery/handler layer. Explains Clean Architecture separation, detection patterns for fat handlers, and proper delegation to usecase layer. Tailored for gRPC/HTTP handlers.",
-  "updatedAt": "2026-01-21T16:18:34.740702Z"
-}

@@ -1,5 +1,0 @@
-{
-  "artifactType": "ARTIFACT_TYPE_OTHER",
-  "summary": "Rule preventing loop variable capture bug in goroutine closures. Covers the classic Go pitfall and solutions for capturing iteration variables correctly.",
-  "updatedAt": "2026-01-21T16:22:19.544343Z"
-}

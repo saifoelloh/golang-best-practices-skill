@@ -1,5 +1,0 @@
-{
-  "artifactType": "ARTIFACT_TYPE_OTHER",
-  "summary": "Rule for reducing usecase complexity by moving business logic into domain entities. Promotes rich domain models over anemic entities with fat usecases.",
-  "updatedAt": "2026-01-21T16:28:56.222311Z"
-}

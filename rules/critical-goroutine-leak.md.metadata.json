@@ -1,5 +1,0 @@
-{
-  "artifactType": "ARTIFACT_TYPE_OTHER",
-  "summary": "Rule preventing goroutine leaks by requiring exit conditions. Shows detection patterns for goroutines without termination, examples of infinite loops blocking on channels, and proper solutions using context cancellation and done channels.",
-  "updatedAt": "2026-01-21T15:53:26.096383Z"
-}

@@ -1,5 +1,0 @@
-{
-  "artifactType": "ARTIFACT_TYPE_OTHER",
-  "summary": "Rule for matching WaitGroup Add and Done calls to prevent deadlocks. Covers proper synchronization patterns and common pitfalls.",
-  "updatedAt": "2026-01-21T16:22:26.993923Z"
-}

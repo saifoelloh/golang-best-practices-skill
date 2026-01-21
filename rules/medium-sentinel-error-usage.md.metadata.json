@@ -1,5 +1,0 @@
-{
-  "artifactType": "ARTIFACT_TYPE_OTHER",
-  "summary": "Rule for using sentinel errors for stable error categories (NotFound, Unauthorized, etc). Enables consistent error handling across application layers.",
-  "updatedAt": "2026-01-21T16:29:10.237821Z"
-}

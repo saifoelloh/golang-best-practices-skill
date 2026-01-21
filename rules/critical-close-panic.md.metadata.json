@@ -1,5 +1,0 @@
-{
-  "artifactType": "ARTIFACT_TYPE_OTHER",
-  "summary": "Rule mandating sender closes channels, not receivers. Explains panic risks from closing wrong side or multiple times, detection patterns for improper closure, and proper channel lifecycle management with defer close() in sender goroutines.",
-  "updatedAt": "2026-01-21T15:58:33.320621Z"
-}

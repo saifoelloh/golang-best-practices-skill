@@ -1,5 +1,0 @@
-{
-  "artifactType": "ARTIFACT_TYPE_OTHER",
-  "summary": "Main skill definition file for golang-best-practices skill. Contains YAML frontmatter with metadata, trigger phrases, 8 rule categories prioritized by impact (CRITICAL to LOW), quick reference guide with 35+ rules, and instructions for accessing detailed rule files and references.",
-  "updatedAt": "2026-01-21T15:46:28.927572Z"
-}

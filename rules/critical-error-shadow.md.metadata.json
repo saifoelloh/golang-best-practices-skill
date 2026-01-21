@@ -1,5 +1,0 @@
-{
-  "artifactType": "ARTIFACT_TYPE_OTHER",
-  "summary": "Rule preventing error variable shadowing in nested scopes. Explains how shadowing causes silent error loss, shows detection patterns for nested := with err variable, and provides solutions using different variable names or avoiding nested declarations.",
-  "updatedAt": "2026-01-21T15:54:55.157312Z"
-}

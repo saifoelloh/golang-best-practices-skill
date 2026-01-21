@@ -1,5 +1,0 @@
-{
-  "artifactType": "ARTIFACT_TYPE_OTHER",
-  "summary": "Rule against overusing pointers for small types. Explains value vs pointer performance tradeoffs and when to use each for primitives and small structs.",
-  "updatedAt": "2026-01-21T16:28:23.045587Z"
-}

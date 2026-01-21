@@ -1,5 +1,0 @@
-{
-  "artifactType": "ARTIFACT_TYPE_OTHER",
-  "summary": "Rule for avoiding nil pointer panics by using zero values and nil checks. Covers optional fields patterns and defensive programming.",
-  "updatedAt": "2026-01-21T16:29:10.269720Z"
-}

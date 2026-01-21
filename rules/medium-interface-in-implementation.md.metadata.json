@@ -1,5 +1,0 @@
-{
-  "artifactType": "ARTIFACT_TYPE_OTHER",
-  "summary": "Rule for defining interfaces in consumer packages, not producer packages. Follows Interface Segregation Principle and dependency inversion.",
-  "updatedAt": "2026-01-21T16:29:03.811180Z"
-}
