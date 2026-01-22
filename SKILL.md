@@ -1,10 +1,17 @@
 ---
 name: golang-best-practices
-description: Go code review and optimization skill. Use when asked to "review Go code", "check idiomatic Go", "optimize Golang", "find Go anti-patterns", or "improve Go performance". Covers error handling, concurrency, architecture, performance, and idiomatic patterns based on authoritative sources.
+description: Comprehensive Go code review meta-skill. Coordinates 5 specialized domain skills. For targeted reviews, use domain-specific skills (concurrency-safety, clean-architecture). For full audits, use this meta-skill.
 license: MIT
 metadata:
   author: ekuid
-  version: "1.1.0"
+  version: "2.0.0"
+  skill_type: meta
+  sub_skills:
+    - concurrency-safety
+    - clean-architecture
+    - error-handling
+    - design-patterns
+    - idiomatic-go
   sources:
     - "Learning Go: An Idiomatic Approach (Jon Bodner)"
     - "Concurrency in Go (Katherine Cox-Buday)"
@@ -15,19 +22,73 @@ metadata:
   last_updated: "2026-01-22"
 ---
 
-# Golang Best Practices
+# Golang Best Practices (Meta-Skill)
 
-Comprehensive Go code review skill based on authoritative sources. Contains 43 rules across 8 categories, prioritized by impact to guide code reviews, refactoring, and optimization.
+Comprehensive Go code review skill coordinating **5 specialized domain skills** for complete code audits.
 
-## When to Apply
+> [!NOTE]
+> **v2.0.0 Update**: This skill now coordinates multiple focused domain skills. Use specific skills for targeted reviews or this meta-skill for comprehensive audits.
 
-Use this skill when:
-- Reviewing Go code for bugs or anti-patterns
-- Optimizing Go application performance
-- Refactoring Go codebase for idiomatic patterns
-- Auditing concurrency safety
-- Implementing Clean Architecture in Go services
-- Preparing Go code for production deployment
+## Available Skills
+
+### 1. [Concurrency Safety](concurrency-safety/SKILL.md) ✅
+**12 rules** | Goroutines, channels, race conditions, deadlocks  
+**Status**: Active (v2.0.0)
+
+Use when:
+- Reviewing code with goroutines or channels
+- Debugging race conditions or deadlocks
+- Auditing concurrent data access
+
+**Trigger phrases**: "Check for race conditions", "Review concurrency", "Find goroutine leaks"
+
+### 2. [Clean Architecture](clean-architecture/SKILL.md) ✅
+**9 rules** | Layer separation, dependency rules, gRPC patterns  
+**Status**: Active (v2.0.0)
+
+Use when:
+- Auditing service architecture
+- Reviewing layered architecture compliance
+- Ensuring proper dependency injection
+
+**Trigger phrases**: "Audit architecture", "Check layer dependencies", "Review Clean Architecture"
+
+### 3. [Error Handling](error-handling/SKILL.md) 🚧
+**7 rules** | Error wrapping, context, nil checks  
+**Status**: Phase 2 (Planned)
+
+Use when:
+- Reviewing error propagation
+- Checking context usage
+- Auditing error handling patterns
+
+### 4. [Design Patterns](design-patterns/SKILL.md) 🚧
+**13 rules** | Code smells, refactoring, Gang of Four patterns  
+**Status**: Phase 2 (Planned)
+
+Use when:
+- Refactoring complex code
+- Reducing technical debt
+- Applying design patterns
+
+### 5. [Idiomatic Go](idiomatic-go/SKILL.md) 🚧
+**6 rules** | Go-specific idioms, interfaces, pointers  
+**Status**: Phase 2 (Planned)
+
+Use when:
+- Ensuring idiomatic Go style
+- Reviewing interface usage
+- Optimizing pointer usage
+
+## When to Use This Meta-Skill
+
+Use this meta-skill for:
+- Complete codebase audits
+- Pre-production reviews
+- Unknown issue categories
+- Comprehensive refactoring
+
+For targeted reviews, use specific skills above (e.g., just concurrency-safety or clean-architecture).
 
 ## Rule Categories by Priority
 
@@ -173,16 +234,18 @@ Find performance issues in this Go code
 
 ## Trigger Phrases
 
-This skill activates when you say:
+**For comprehensive audits** (uses this meta-skill):
 - "Review my Go code"
 - "Check this Golang file"
 - "Find Go anti-patterns"
-- "Optimize this Go function"
-- "Is this idiomatic Go?"
-- "Check for goroutine leaks"
-- "Review error handling"
-- "Audit Go architecture"
-- "Check concurrency safety"
+- "Audit this Go service"
+
+**For domain-specific reviews** (uses specific skills):
+- "Check for race conditions" → **concurrency-safety**
+- "Audit architecture" → **clean-architecture**
+- "Review error handling" → **error-handling** (Phase 2)
+- "Refactor this code" → **design-patterns** (Phase 2)
+- "Is this idiomatic Go?" → **idiomatic-go** (Phase 2)
 
 ## Best Practices Philosophy
 
