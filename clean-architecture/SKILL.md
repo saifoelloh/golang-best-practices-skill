@@ -3,7 +3,7 @@ name: golang-clean-architecture
 description: Clean Architecture audit for Go services. Use when reviewing layered architecture, dependency rules, or gRPC/usecase/repository patterns. Ensures proper separation of concerns and dependency inversion.
 license: MIT
 metadata:
-  author: ekuid
+  author: saifoelloh
   version: "2.0.0"
   parent_skill: golang-best-practices
   sources:

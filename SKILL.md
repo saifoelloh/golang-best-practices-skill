@@ -3,7 +3,7 @@ name: golang-best-practices
 description: Comprehensive Go code review meta-skill. Coordinates 5 specialized domain skills. For targeted reviews, use domain-specific skills (concurrency-safety, clean-architecture). For full audits, use this meta-skill.
 license: MIT
 metadata:
-  author: ekuid
+  author: saifoelloh
   version: "2.0.0"
   skill_type: meta
   sub_skills:

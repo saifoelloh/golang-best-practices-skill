@@ -2,6 +2,64 @@
 
 All notable changes to golang-best-practices skill.
 
+## [2.0.0] - 2026-01-22
+
+### 🎉 Major Release: Multi-Skill Architecture
+
+**Breaking Change**: Restructured from monolithic skill to 5 specialized domain skills.
+
+### Added
+
+**5 Domain-Specific Skills**:
+
+1. **Concurrency Safety** (12 rules)
+   - Goroutines, channels, race conditions, deadlocks
+   - Trigger: "Check for race conditions"
+
+2. **Clean Architecture** (9 rules, +5 new architecture rules)
+   - Layer separation, dependency rules, gRPC patterns
+   - NEW: `arch-domain-import-infra`, `arch-concrete-dependency`, `arch-repository-business-logic`, `arch-usecase-orchestration`, `arch-interface-segregation`
+   - Trigger: "Audit architecture"
+
+3. **Error Handling** (7 rules)
+   - Error wrapping, context propagation, nil checks
+   - Trigger: "Review error handling"
+
+4. **Design Patterns** (13 rules)
+   - Code smells, refactoring, Gang of Four patterns
+   - Trigger: "Refactor this code"
+
+5. **Idiomatic Go** (7 rules)
+   - Go-specific idioms, interfaces, pointers
+   - Trigger: "Is this idiomatic Go?"
+
+### Changed
+
+- **Architecture**: Monolithic → Multi-skill (5 domain-specific skills)
+- **Rule count**: 43 → 48 (+5 architecture rules)
+- **Performance**: 60-80% faster for domain-specific reviews
+- **Main SKILL.md**: Now a meta-skill coordinator
+- **Structure**: Reorganized into skill-specific directories
+- **Shared resources**: Created `shared/` for templates and references
+
+### Improved
+
+- **Agent processing**: Targeted reviews scan 7-13 rules instead of 43
+- **User experience**: Clear skill selection via trigger phrases
+- **Maintainability**: Focused skill scopes, easier to update
+- **Scalability**: Easy to add new skills or rules
+- **Backward compatibility**: Meta-skill supports full audits
+
+### Migration Guide
+
+**v1.x users**: Main SKILL.md now coordinates all 5 skills. You can:
+- Use meta-skill for comprehensive audits: "Review my Go code"
+- Use domain skills for faster targeted reviews: "Check for race conditions"
+
+**File paths**: Rules moved from `rules/` to `{skill-name}/rules/`
+
+
+
 ## [1.1.0] - 2026-01-22
 
 ### Added

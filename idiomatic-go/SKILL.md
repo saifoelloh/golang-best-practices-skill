@@ -3,7 +3,7 @@ name: golang-idiomatic-go
 description: Idiomatic Go patterns review. Use when checking Go-specific idioms, interface design, or pointer usage. Ensures code follows Go conventions and best practices.
 license: MIT
 metadata:
-  author: ekuid
+  author: saifoelloh
   version: "2.0.0"
   parent_skill: golang-best-practices
   sources:

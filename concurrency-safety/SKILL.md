@@ -3,7 +3,7 @@ name: golang-concurrency-safety
 description: Go concurrency safety review. Use when checking goroutines, channels, race conditions, or synchronization. Detects goroutine leaks, deadlocks, race conditions, and unsafe channel operations.
 license: MIT
 metadata:
-  author: ekuid
+  author: saifoelloh
   version: "2.0.0"
   parent_skill: golang-best-practices
   sources:

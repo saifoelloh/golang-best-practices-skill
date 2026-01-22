@@ -3,7 +3,7 @@ name: golang-design-patterns
 description: Go design patterns and refactoring skill. Use when refactoring complex code, reducing technical debt, or applying design patterns. Detects code smells and suggests pattern-based solutions.
 license: MIT
 metadata:
-  author: ekuid
+  author: saifoelloh
   version: "2.0.0"
   parent_skill: golang-best-practices
   sources:

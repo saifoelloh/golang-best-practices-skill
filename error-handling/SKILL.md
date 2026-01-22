@@ -3,7 +3,7 @@ name: golang-error-handling
 description: Go error handling review. Use when checking error wrapping, context propagation, or error checking patterns. Ensures proper error chains, context usage, and nil checks.
 license: MIT
 metadata:
-  author: ekuid
+  author: saifoelloh
   version: "2.0.0"
   parent_skill: golang-best-practices
   sources:

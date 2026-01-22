@@ -1,56 +1,62 @@
 {
   "name": "golang-best-practices",
-  "displayName": "Golang Best Practices",
-  "description": "Production-ready Go code review skill based on authoritative sources",
-  "version": "1.1.0",
+  "version": "2.0.0",
+  "description": "Comprehensive Go code review meta-skill coordinating 5 specialized domain skills. Use for complete audits or targeted reviews of concurrency, architecture, error handling, design patterns, and idiomatic Go.",
+  "type": "meta-skill",
   "author": {
     "name": "saifoelloh",
     "email": "saifoelloh@gmail.com",
-    "github": "https://github.com/saifoelloh"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/saifoelloh/golang-best-practices-skill.git"
+    "github": "saifoelloh"
   },
   "license": "MIT",
-  "keywords": [
-    "golang",
-    "go",
-    "best-practices",
-    "code-review",
-    "anti-patterns",
-    "clean-architecture",
-    "concurrency",
-    "error-handling"
-  ],
-  "categories": [
-    "code-review",
-    "linting",
-    "architecture",
-    "quality-assurance"
-  ],
-  "languages": [
-    "go"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/saifoelloh/golang-best-practices-skill"
+  },
+  "categories": ["golang", "code-review", "best-practices", "clean-architecture", "concurrency"],
+  "tags": ["go", "golang", "linting", "code-quality", "refactoring", "architecture", "concurrency-safety"],
+  "sub_skills": [
+    {
+      "name": "concurrency-safety",
+      "rules": 12,
+      "description": "Goroutines, channels, race conditions, deadlocks"
+    },
+    {
+      "name": "clean-architecture",
+      "rules": 9,
+      "description": "Layer separation, dependency rules, gRPC patterns"
+    },
+    {
+      "name": "error-handling",
+      "rules": 7,
+      "description": "Error wrapping, context propagation, nil checks"
+    },
+    {
+      "name": "design-patterns",
+      "rules": 13,
+      "description": "Code smells, refactoring, Gang of Four patterns"
+    },
+    {
+      "name": "idiomatic-go",
+      "rules": 7,
+      "description": "Go-specific idioms, interfaces, pointers"
+    }
   ],
   "rules": {
-    "total": 43,
+    "total": 48,
     "critical": 8,
     "high": 14,
-    "medium": 21
+    "medium": 26,
+    "architecture": 5
   },
   "sources": [
-    "Learning Go: An Idiomatic Approach by Jon Bodner",
-    "Concurrency in Go by Katherine Cox-Buday",
-    "Clean Architecture by Robert C. Martin"
+    "Learning Go: An Idiomatic Approach (Jon Bodner)",
+    "Concurrency in Go (Katherine Cox-Buday)",
+    "Clean Architecture (Robert C. Martin)",
+    "Refactoring (Martin Fowler)",
+    "Design Patterns (Gang of Four)",
+    "Refactoring.Guru"
   ],
-  "features": [
-    "Evidence-based rules from authoritative sources",
-    "43 comprehensive rules covering bugs, architecture, and design patterns",
-    "Production-tested on real codebases",
-    "Clean Architecture compliance checking",
-    "Concurrency anti-pattern detection",
-    "Error handling best practices"
-  ],
-  "created": "2026-01-21",
-  "updated": "2026-01-22"
+  "last_updated": "2026-01-22",
+  "changelog_url": "https://github.com/saifoelloh/golang-best-practices-skill/blob/main/CHANGELOG.md"
 }
