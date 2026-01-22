@@ -53,32 +53,38 @@ Use when:
 
 **Trigger phrases**: "Audit architecture", "Check layer dependencies", "Review Clean Architecture"
 
-### 3. [Error Handling](error-handling/SKILL.md) 🚧
+### 3. [Error Handling](error-handling/SKILL.md) ✅
 **7 rules** | Error wrapping, context, nil checks  
-**Status**: Phase 2 (Planned)
+**Status**: Active (v2.0.0)
 
 Use when:
 - Reviewing error propagation
 - Checking context usage
 - Auditing error handling patterns
 
-### 4. [Design Patterns](design-patterns/SKILL.md) 🚧
+**Trigger phrases**: "Review error handling", "Check error wrapping", "Verify context propagation"
+
+### 4. [Design Patterns](design-patterns/SKILL.md) ✅
 **13 rules** | Code smells, refactoring, Gang of Four patterns  
-**Status**: Phase 2 (Planned)
+**Status**: Active (v2.0.0)
 
 Use when:
 - Refactoring complex code
 - Reducing technical debt
 - Applying design patterns
 
-### 5. [Idiomatic Go](idiomatic-go/SKILL.md) 🚧
+**Trigger phrases**: "Refactor this code", "Reduce complexity", "Apply design patterns"
+
+### 5. [Idiomatic Go](idiomatic-go/SKILL.md) ✅
 **6 rules** | Go-specific idioms, interfaces, pointers  
-**Status**: Phase 2 (Planned)
+**Status**: Active (v2.0.0)
 
 Use when:
 - Ensuring idiomatic Go style
 - Reviewing interface usage
 - Optimizing pointer usage
+
+**Trigger phrases**: "Is this idiomatic Go?", "Review Go style", "Check interface design"
 
 ## When to Use This Meta-Skill
 
@@ -243,9 +249,9 @@ Find performance issues in this Go code
 **For domain-specific reviews** (uses specific skills):
 - "Check for race conditions" → **concurrency-safety**
 - "Audit architecture" → **clean-architecture**
-- "Review error handling" → **error-handling** (Phase 2)
-- "Refactor this code" → **design-patterns** (Phase 2)
-- "Is this idiomatic Go?" → **idiomatic-go** (Phase 2)
+- "Review error handling" → **error-handling**
+- "Refactor this code" → **design-patterns**
+- "Is this idiomatic Go?" → **idiomatic-go**
 
 ## Best Practices Philosophy
 
