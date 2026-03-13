@@ -2,6 +2,28 @@
 
 All notable changes to golang-best-practices skill.
 
+## [2.1.0] - 2026-03-13
+
+### 🎉 Feature: Database Skill Standardization & Project Update
+
+Standardized the recently added `database-repository` skill and performed a project-wide versioning sync.
+
+### Added
+
+- **Standardized Database & Repository Skill**:
+  - Restructured `database-repository` to use individual rule files in `rules/` directory (consistent with other domain skills).
+  - NEW: `high-gorm-identifier-quoting` - Focuses on PostgreSQL compatibility with GORM.
+  - NEW: `medium-gorm-select-redundancy` - Avoids redundant quoting in GORM `.Select()`.
+  
+### Changed
+
+- **Project Versioning**: Unified versioning across all skills to **v2.1.0**.
+- **Meta-Skill Update**: Reflected the addition of the 6th specialized skill in root `SKILL.md` and `metadata.json`.
+- **Rule Count**: Updated total rule count from **48** to **50**.
+- **Sub-Skill Metadata**: Updated `last_updated` and `version` for all domain skills.
+
+---
+
 ## [2.0.0] - 2026-01-22
 
 ### 🎉 Major Release: Multi-Skill Architecture
