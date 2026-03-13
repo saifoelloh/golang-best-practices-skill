@@ -1,139 +1,88 @@
 # Rule Categories Index
 
-This document lists all rules organized by category and priority.
+All 40 rules organized by priority and domain.
 
 ---
 
-## Critical Issues (Priority 1) - 8 Rules
+## CRITICAL (12 rules) — Prevents data loss, SQL injection, crashes, production failures
 
-**Impact**: Prevents bugs, crashes, memory leaks, and production failures
-
-| Rule | File | Impact |
-|------|------|--------|
-| Error Wrapping | `critical-error-wrapping.md` | Use %w to preserve error chain |
-| Defer in Loop | `critical-defer-in-loop.md` | Resource leaks from deferred closures |
-| Context Leak | `critical-context-leak.md` | Always defer cancel() after context creation |
-| Error Shadow | `critical-error-shadow.md` | Don't shadow err variable in nested scopes |
-| Goroutine Leak | `critical-goroutine-leak.md` | Goroutines must have exit conditions |
-| Race Condition | `critical-race-condition.md` | Protect shared state with mutex/channels |
-| Channel Deadlock | `critical-channel-deadlock.md` | Ensure paired send/receive operations |
-| Close Panic | `critical-close-panic.md` | Sender closes channel, not receiver |
-
----
-
-## High-Impact Patterns (Priority 2) - 12 Rules
-
-**Impact**: Reliability, correctness, and performance improvements
-
-| Rule | File | Impact |
-|------|------|--------|
-| Pointer Receiver | `high-pointer-receiver.md` | Use pointer receivers for mutations |
-| Context Propagation | `high-context-propagation.md` | Propagate context through call chain |
-| Error Is/As | `high-error-is-as.md` | Use errors.Is/As instead of == |
-| Interface Nil | `high-interface-nil.md` | Check interface nil correctly |
-| Goroutine Unbounded | `high-goroutine-unbounded.md` | Limit concurrent goroutines (worker pool) |
-| Channel Not Closed | `high-channel-not-closed.md` | Always close channels when done |
-| Loop Variable Capture | `high-loop-variable-capture.md` | Avoid closure over loop variables |
-| WaitGroup Mismatch | `high-waitgroup-mismatch.md` | Match Add() and Done() calls |
-| Business Logic Handler | `high-business-logic-handler.md` | Keep delivery layer thin |
-| Business Logic Repository | `high-business-logic-repository.md` | No business logic in data layer |
-| Constructor Creates Deps | `high-constructor-creates-deps.md` | Inject dependencies, don't create |
-| Transaction in Repository | `high-transaction-in-repository.md` | Transactions belong in usecase |
+| Rule | Domain | Impact |
+|---|---|---|
+| `critical-sql-injection` | gorm-query-patterns | SQL injection via string concatenation |
+| `critical-error-check` | gorm-query-patterns | Silent failures from unchecked .Error |
+| `critical-transaction-wrap` | gorm-query-patterns | Partial writes without transaction |
+| `critical-placeholder-style` | postgresql-syntax | Runtime syntax error from $N in GORM context |
+| `critical-n-plus-one` | query-performance | Exponential queries under load |
+| `critical-unindexed-fk` | query-performance | Full table scans on every JOIN |
+| `critical-errors-is-as` | error-handling | Wrong error branch from == comparison |
+| `critical-pg-error-mapping` | error-handling | Postgres internals leaking to business logic |
+| `critical-serialization-retry` | error-handling | Silent failures on concurrent serializable txns |
+| `critical-no-automigrate-production` | migration-safety | Table locks and no rollback on every restart |
+| `critical-not-null-backfill` | migration-safety | Migration fails on non-empty table |
+| `critical-always-provide-rollback` | migration-safety | No recovery path on bad migration |
 
 ---
 
-## Medium Improvements (Priority 3) - 10 Rules
+## HIGH (17 rules) — Prevents performance degradation and subtle bugs
 
-**Impact**: Code quality, idioms, and maintainability
-
-| Rule | File | Impact |
-|------|------|--------|
-| Interface Pollution | `medium-interface-pollution.md` | Keep interfaces small (<5 methods) |
-| Accept Interface Return Struct | `medium-accept-interface-return-struct.md` | API flexibility pattern |
-| Pointer Overuse | `medium-pointer-overuse.md` | Don't overuse pointers for small types |
-| Directional Channels | `medium-directional-channels.md` | Use send/receive-only channels |
-| Buffered Channel Size | `medium-buffered-channel-size.md` | Choose appropriate buffer size |
-| Select Default | `medium-select-default.md` | Avoid busy-wait with select |
-| Fat Interface | `medium-fat-interface.md` | Split large interfaces |
-| Usecase Complexity | `medium-usecase-complexity.md` | Move business logic to domain entities |
-| Interface in Implementation | `medium-interface-in-implementation.md` | Define interfaces where used |
-| Sentinel Error Usage | `medium-sentinel-error-usage.md` | Use sentinel errors for stable categories |
-
----
-
-## Architecture (Priority 4) - 5 Rules
-
-**Impact**: Clean Architecture compliance for Go services
-
-| Rule | File | Impact |
-|------|------|--------|
-| Domain Import Infra | `arch-domain-import-infra.md` | Domain must not import infrastructure |
-| Concrete Dependency | `arch-concrete-dependency.md` | Depend on interfaces, not concrete types |
-| Repository Business Logic | `arch-repository-business-logic.md` | Repositories do CRUD only |
-| Usecase Orchestration | `arch-usecase-orchestration.md` | Usecases orchestrate, entities decide |
-| Interface Segregation | `arch-interface-segregation.md` | Small, consumer-defined interfaces |
+| Rule | Domain | Impact |
+|---|---|---|
+| `high-preload-vs-joins` | gorm-query-patterns | N+1 or incorrect filter results |
+| `high-first-vs-find` | gorm-query-patterns | Hidden ORDER BY LIMIT 1 on list queries |
+| `high-save-vs-updates` | gorm-query-patterns | Silent zero-value overwrites on Save |
+| `high-with-context` | gorm-query-patterns | No query timeout or cancellation |
+| `high-select-columns` | gorm-query-patterns | SELECT * fetches unused large columns |
+| `high-identifier-quoting` | postgresql-syntax | Reserved keyword causes syntax error |
+| `high-returning-clause` | postgresql-syntax | Race condition on INSERT+SELECT pattern |
+| `high-ilike-search` | postgresql-syntax | LOWER() prevents index usage |
+| `high-explicit-cast` | postgresql-syntax | Type mismatch causes operator errors |
+| `high-explain-analyze` | query-performance | Assumed-fast query doing Seq Scan |
+| `high-connection-pool` | query-performance | Connection exhaustion under load |
+| `high-find-in-batches` | query-performance | OOM on large dataset processing |
+| `high-rows-affected` | error-handling | Silent no-op on Update/Delete |
+| `high-wrap-with-context` | error-handling | Undebuggable errors in production |
+| `high-deadlock-detection` | error-handling | 40P01 treated as fatal instead of retryable |
+| `high-create-index-concurrently` | migration-safety | Write lock on large table during index build |
+| `high-idempotent-migration` | migration-safety | Migration fails on re-run |
 
 ---
 
-## Total: 35 Rules
+## MEDIUM (11 rules) — Code quality, idiomatic patterns, maintainability
 
-- **CRITICAL**: 8 rules (23%)
-- **HIGH**: 12 rules (34%)
-- **MEDIUM**: 10 rules (29%)
-- **ARCHITECTURE**: 5 rules (12%)
-
----
-
-## Design Patterns & Refactoring (Priority 2-3) - 13 Rules
-
-**Impact**: Code quality, maintainability, and readability
-
-| Rule | File | Impact |
-|------|------|--------|
-| God Object | `high-god-object.md` | Extract 300+ line functions |
-| Extract Method | `high-extract-method.md` | Name complex blocks |
-| Primitive Obsession | `medium-primitive-obsession.md` | Value objects over primitives |
-| Long Parameter List | `medium-long-parameter-list.md` | Parameter objects |
-| Data Clumps | `medium-data-clumps.md` | Extract repeated params |
-| Feature Envy | `medium-feature-envy.md` | Move logic to data |
-| Magic Constants | `medium-magic-constants.md` | Named constants |
-| Builder Pattern | `medium-builder-pattern.md` | Fluent construction |
-| Factory Constructor | `medium-factory-constructor.md` | Validated creation |
-| Parameter Object | `medium-introduce-parameter-object.md` | Group params |
-| Switch to Strategy | `medium-switch-to-strategy.md` | Polymorphism |
-| Middleware Decorator | `medium-middleware-decorator.md` | Decorator pattern |
-| Law of Demeter | `medium-law-of-demeter.md` | Reduce coupling |
+| Rule | Domain | Impact |
+|---|---|---|
+| `medium-scopes` | gorm-query-patterns | Duplicated WHERE logic across methods |
+| `medium-pagination-order` | gorm-query-patterns | Non-deterministic pagination results |
+| `medium-omit-associations` | gorm-query-patterns | Unintended association upserts on Create |
+| `medium-cte-readability` | postgresql-syntax | Unreadable nested subqueries |
+| `medium-jsonb-operators` | postgresql-syntax | Wrong operator causes empty results on JSONB |
+| `medium-interval-arithmetic` | postgresql-syntax | Error-prone manual second calculations |
+| `medium-select-redundancy` | postgresql-syntax | Redundant manual quoting in .Select() |
+| `medium-count-query` | query-performance | Full fetch just to call len() |
+| `medium-partial-index` | query-performance | Index bloat on low-cardinality filtered queries |
+| `medium-structured-logging` | error-handling | Unstructured logs not queryable in APM tools |
+| `medium-drop-column-deprecation` | migration-safety | DROP COLUMN in same deploy breaks old pods |
 
 ---
 
-## Total: 43 Rules (Updated v1.1.0)
+## Total: 40 Rules
 
-- **CRITICAL**: 8 rules (19%)
-- **HIGH**: 14 rules (33%)
-- **MEDIUM**: 21 rules (49%)
-- **ARCHITECTURE**: 5 rules (12%)
+- **CRITICAL**: 12 rules (30%)
+- **HIGH**: 17 rules (42%)
+- **MEDIUM**: 11 rules (28%)
 
 ---
 
 ## How to Navigate
 
-Rules are stored in files matching their name:
+Rule files are in `{domain}/rules/{priority}-{name}.md`:
+
 ```
-rules/critical-error-wrapping.md
-rules/high-pointer-receiver.md
-rules/medium-interface-pollution.md
-rules/arch-domain-import-infra.md
+gorm-query-patterns/rules/critical-sql-injection.md
+postgresql-syntax/rules/high-identifier-quoting.md
+query-performance/rules/critical-n-plus-one.md
+error-handling/rules/critical-pg-error-mapping.md
+migration-safety/rules/critical-not-null-backfill.md
 ```
 
-Each rule file follows the template in `_template.md` with:
-- YAML frontmatter (title, impact, tags, source)
-- Rule explanation
-- Detection criteria
-- Incorrect example (❌ BAD)
-- Correct example (✅ GOOD)
-- Additional context
-- References
-
----
-
-**Last Updated**: 2026-01-21
+**Last Updated**: 2026-03-13

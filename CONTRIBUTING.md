@@ -1,116 +1,120 @@
-# Contributing to Golang Best Practices Skill
+# Contributing to GORM + PostgreSQL Best Practices Skill
 
-Thank you for considering contributing! This skill is designed to help developers write better Go code.
+Contributions welcome! This skill is designed to help Go developers write correct, performant, and safe database code using GORM + PostgreSQL.
 
 ## How to Contribute
 
 ### Adding a New Rule
 
-1. **Research** - Ensure the rule is backed by authoritative source
-   - Prefer: Official Go documentation, published books, established style guides
+1. **Research** — Ensure the rule is backed by an authoritative source
+   - Preferred: GORM official docs, PostgreSQL official docs, published books
+   - Acceptable: Established engineering blog posts (Braintree, Uber, Cloudflare)
    - Avoid: Personal opinions without citations
 
-2. **Use the Template** - Start with `rules/_template.md`
+2. **Choose the Right Domain**:
+   - `gorm-query-patterns/` — GORM ORM API usage (db.Find, Preload, Updates, etc.)
+   - `postgresql-syntax/` — Raw SQL syntax, Postgres-specific functions and types
+   - `query-performance/` — Indexes, N+1, EXPLAIN, connection pool, batching
+   - `error-handling/` — PostgreSQL error codes, errors.Is/As, retry logic
+   - `migration-safety/` — DDL changes, rollback, idempotency, zero-downtime
+
+3. **Use the Template** — Start with `shared/templates/_template.md`
    ```bash
-   cp rules/_template.md rules/[priority]-[name].md
+   cp shared/templates/_template.md {domain}/rules/{priority}-{rule-name}.md
    ```
+   Naming convention: `{critical|high|medium}-{kebab-case-rule-name}.md`
 
-3. **Fill in Required Sections**:
-   - YAML frontmatter (title, impact, tags, source)
-   - Clear explanation of why it matters
-   - Detection criteria
-   - Incorrect example with explanation
-   - Correct example with explanation
-   - References
+4. **Fill In All Required Sections**:
+   - YAML frontmatter (`title`, `impact`, `impactDescription`, `tags`, `source`)
+   - Rule explanation with real-world consequence
+   - Detection criteria (what to look for in code)
+   - Incorrect example (`❌ BAD`) with inline explanation
+   - Correct example (`✅ GOOD`) with inline explanation
+   - Additional context (edge cases, related rules)
+   - References (linked, authoritative)
 
-4. **Prioritize Correctly**:
-   - **CRITICAL**: Production bugs, crashes, security issues
-   - **HIGH**: Reliability, architecture, correctness
-   - **MEDIUM**: Code quality, idioms, maintainability
+5. **Prioritize Correctly**:
+   - **CRITICAL**: Production bugs, data loss, security vulnerabilities, crashes
+   - **HIGH**: Performance degradation, subtle correctness bugs, broken error handling
+   - **MEDIUM**: Code quality, idiomatic patterns, maintainability
 
-5. **Add to Index**:
-   - Update `rules/_categories.md`
-   - Update `SKILL.md` quick reference
-   - Update `metadata.json` statistics
+6. **Update the Index**:
+   - Add rule to `shared/_categories.md`
+   - Add rule to the domain's `SKILL.md` rules table
+   - Add rule to root `SKILL.md` quick reference table
+   - Update `metadata.json` rule counts
 
 ### Testing Your Rule
 
-Before submitting, test your rule:
+Before submitting, verify:
+1. The anti-pattern example actually fails or causes the stated problem
+2. The correct example compiles and runs correctly
+3. The rule doesn't contradict GORM or PostgreSQL official documentation
+4. The rule isn't already covered by golang-best-practices-skill (check for overlap)
 
-1. Find real code examples that violate the rule
-2. Verify the "correct" example actually solves the problem
-3. Ensure the rule doesn't create false positives
+### Cross-Referencing golang-best-practices-skill
 
-### Code Examples
+When adding a rule that extends or mirrors a rule in [golang-best-practices-skill](https://github.com/saifoelloh/golang-best-practices-skill), add a cross-reference note in the "Additional Context" section:
 
-- ❌ **Bad examples** should show real anti-patterns
-- ✅ **Good examples** should be production-ready
-- Include comments explaining WHY, not just WHAT
-- Keep examples concise but complete
+```markdown
+> **Note from golang-best-practices-skill**: This rule relates to `{domain}/{rule-id}` in the companion Go skill. [Brief explanation of relationship].
+```
+
+Also update `metadata.json` `companion_skill.overlapping_rules` array.
 
 ### Style Guidelines
 
 **Markdown**:
-- Use `---` for YAML frontmatter
-- Use `## ` for section headers
-- Use ` ```go ` for code blocks
-- Use **bold** for emphasis, *italic* for notes
+- Use `---` YAML frontmatter
+- Use `## ` for top-level sections
+- Use `### ` for subsections
+- Use ` ```go ` for Go code blocks, ` ```sql ` for SQL blocks
 
-**Code**:
-- Follow Go style guide
-- Use meaningful variable names
-- Include error handling
-- Add comments for clarity
+**Code Examples**:
+- `❌ BAD` examples should be realistic anti-patterns seen in real codebases
+- `✅ GOOD` examples should be production-ready, including error handling
+- Always include `ctx context.Context` in repository method signatures
+- Use `fmt.Errorf("MethodName: %w", err)` pattern for error wrapping
 
 **Tone**:
-- Be helpful, not judgmental
-- Explain the reasoning
-- Focus on impact, not rules for rules' sake
+- Explain the *consequence*, not just the rule ("causes OOM crash" not just "don't do this")
+- Focus on impact on PostgreSQL specifically, not generic database advice
 
 ## Pull Request Process
 
 1. **Fork** the repository
-2. **Create** a feature branch (`git checkout -b add-rule-x`)
-3. **Add** your rule following the template
-4. **Update** documentation (categories, SKILL.md, metadata.json)
-5. **Test** with real code examples
-6. **Commit** with clear message: `Add [priority]-[name] rule`
-7. **Push** to your fork
-8. **Submit** a Pull Request with:
-   - Rule name and priority
-   - Brief explanation
+2. **Create** a feature branch: `git checkout -b add-rule-{name}`
+3. **Add** rule file following the template
+4. **Update** `shared/_categories.md`, domain `SKILL.md`, root `SKILL.md`, `metadata.json`
+5. **Commit**: `Add {priority}-{rule-name} to {domain}`
+6. **Push** and open a Pull Request with:
+   - Rule name and domain
+   - Brief explanation and real-world example
    - Source citation
-   - Example violation (if possible)
 
-## Rule Criteria
+## Rule Quality Criteria
 
-A good rule should:
-
-- ✅ Be backed by authoritative source
-- ✅ Solve a real problem seen in production
-- ✅ Have clear detection criteria
-- ✅ Include working code examples
-- ✅ Explain the impact/reasoning
-- ✅ Be actionable (developer knows how to fix)
+A good rule must:
+- ✅ Be backed by authoritative source (GORM docs, PostgreSQL docs, published books)
+- ✅ Address a real problem seen in Go + GORM + PostgreSQL production codebases
+- ✅ Have clear detection criteria (developer knows how to spot it)
+- ✅ Include working, realistic code examples
+- ✅ Explain the PostgreSQL-specific impact
+- ✅ Be actionable (developer knows exactly how to fix it)
 
 Avoid:
-- ❌ Personal preferences without backing
-- ❌ Overly broad/vague rules
-- ❌ Rules that contradict Go idioms
-- ❌ Nitpicky style rules (use gofmt for that)
+- ❌ Generic ORM advice not specific to GORM or PostgreSQL
+- ❌ Rules that duplicate golang-best-practices-skill without adding DB-specific value
+- ❌ Overly nitpicky style rules with no correctness impact
+- ❌ Rules without authoritative citation
 
 ## Questions?
 
-Open an issue for discussion before starting work on:
-- Major new rule categories
-- Changes to existing critical rules
-- Structural changes to the skill
+Open an issue before starting work on:
+- New domain skills (e.g., adding a `testing` or `monitoring` domain)
+- Changes to existing CRITICAL rules
+- Structural changes to the skill format
 
-## Code of Conduct
+---
 
-- Be respectful and constructive
-- Focus on code, not people
-- Cite sources for disagreements
-- Assume good intent
-
-Thank you for helping make Go code better! 🚀
+**Built with ❤️ for better Go database code**

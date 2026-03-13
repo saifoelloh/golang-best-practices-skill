@@ -1,7 +1,7 @@
 {
-  "name": "golang-best-practices",
-  "version": "2.1.0",
-  "description": "Comprehensive Go code review meta-skill coordinating 6 specialized domain skills. Use for complete audits or targeted reviews of concurrency, architecture, error handling, design patterns, database, and idiomatic Go.",
+  "name": "golang-fullstack-best-practices",
+  "version": "3.0.0",
+  "description": "Comprehensive Go + GORM + PostgreSQL review skill for AI agents. Covers concurrency, clean architecture, idiomatic Go, query patterns, SQL syntax, performance, and migration safety.",
   "type": "meta-skill",
   "author": {
     "name": "saifoelloh",
@@ -13,55 +13,70 @@
     "type": "git",
     "url": "https://github.com/saifoelloh/golang-best-practices-skill"
   },
-  "categories": ["golang", "code-review", "best-practices", "clean-architecture", "concurrency", "database"],
-  "tags": ["go", "golang", "linting", "code-quality", "refactoring", "architecture", "concurrency-safety", "database", "gorm"],
+  "categories": ["golang", "gorm", "postgresql", "concurrency", "architecture", "database", "sql", "code-review"],
+  "tags": ["go", "gorm", "postgresql", "sql", "database", "migration", "performance", "error-handling", "n+1", "design-patterns", "clean-architecture", "concurrency"],
   "sub_skills": [
     {
       "name": "concurrency-safety",
       "rules": 12,
-      "description": "Goroutines, channels, race conditions, deadlocks"
+      "description": "Goroutines, channels, race conditions, deadlocks",
+      "priority_breakdown": { "CRITICAL": 5, "HIGH": 4, "MEDIUM": 3 }
     },
     {
       "name": "clean-architecture",
       "rules": 9,
-      "description": "Layer separation, dependency rules, gRPC patterns"
+      "description": "Layer separation, dependency rules, gRPC patterns",
+      "priority_breakdown": { "HIGH": 4, "ARCHITECTURE": 5 }
     },
     {
       "name": "error-handling",
-      "rules": 7,
-      "description": "Error wrapping, context propagation, nil checks"
+      "rules": 14,
+      "description": "General Go error patterns + PostgreSQL error codes and retry logic",
+      "priority_breakdown": { "CRITICAL": 6, "HIGH": 6, "MEDIUM": 2 }
     },
     {
       "name": "design-patterns",
       "rules": 13,
-      "description": "Code smells, refactoring, Gang of Four patterns"
+      "description": "Code smells, refactoring, Gang of Four patterns",
+      "priority_breakdown": { "HIGH": 2, "MEDIUM": 11 }
     },
     {
       "name": "idiomatic-go",
       "rules": 7,
-      "description": "Go-specific idioms, interfaces, pointers"
+      "description": "Go-specific idioms, interfaces, pointers",
+      "priority_breakdown": { "HIGH": 1, "MEDIUM": 6 }
     },
     {
-      "name": "database-repository",
-      "rules": 2,
-      "description": "GORM identifier quoting, PostgreSQL compatibility, Repository patterns"
+      "name": "gorm-query-patterns",
+      "rules": 11,
+      "description": "GORM ORM query patterns, associations, transactions",
+      "priority_breakdown": { "CRITICAL": 3, "HIGH": 5, "MEDIUM": 3 }
+    },
+    {
+      "name": "postgresql-syntax",
+      "rules": 10,
+      "description": "Raw SQL syntax, PostgreSQL functions, identifier quoting",
+      "priority_breakdown": { "CRITICAL": 1, "HIGH": 5, "MEDIUM": 4 }
+    },
+    {
+      "name": "query-performance",
+      "rules": 7,
+      "description": "N+1, indexes, connection pool, batch processing",
+      "priority_breakdown": { "CRITICAL": 2, "HIGH": 3, "MEDIUM": 2 }
+    },
+    {
+      "name": "migration-safety",
+      "rules": 6,
+      "description": "Zero-downtime migrations, rollback, idempotency",
+      "priority_breakdown": { "CRITICAL": 3, "HIGH": 2, "MEDIUM": 1 }
     }
   ],
   "rules": {
-    "total": 50,
-    "critical": 8,
-    "high": 15,
-    "medium": 27,
+    "total": 89,
+    "critical": 20,
+    "high": 30,
+    "medium": 34,
     "architecture": 5
   },
-  "sources": [
-    "Learning Go: An Idiomatic Approach (Jon Bodner)",
-    "Concurrency in Go (Katherine Cox-Buday)",
-    "Clean Architecture (Robert C. Martin)",
-    "Refactoring (Martin Fowler)",
-    "Design Patterns (Gang of Four)",
-    "Refactoring.Guru"
-  ],
-  "last_updated": "2026-03-13",
-  "changelog_url": "https://github.com/saifoelloh/golang-best-practices-skill/blob/main/CHANGELOG.md"
+  "last_updated": "2026-03-13"
 }

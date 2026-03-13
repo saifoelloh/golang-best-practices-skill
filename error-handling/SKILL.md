@@ -1,125 +1,87 @@
 ---
-name: golang-error-handling
-description: Go error handling review. Use when checking error wrapping, context propagation, or error checking patterns. Ensures proper error chains, context usage, and nil checks.
+name: golang-fullstack-error-handling
+description: Unified Go + GORM + PostgreSQL error handling review. Covers error wrapping, context propagation, PostgreSQL error codes (23505, 40001), errors.Is/As mapping, and retry logic. Ensures proper error chains and robust database failure recovery.
 license: MIT
 metadata:
   author: saifoelloh
-  version: "2.1.0"
-  parent_skill: golang-best-practices
+  version: "3.0.0"
+  parent_skill: golang-fullstack-best-practices
   sources:
     - "Learning Go: An Idiomatic Approach (Jon Bodner)"
-    - "Concurrency in Go (Katherine Cox-Buday)"
+    - "PostgreSQL Error Codes Appendix"
+    - "GORM Official Documentation"
+    - "Go Blog - Working with Errors"
   last_updated: "2026-03-13"
 ---
 
-# Golang Error Handling
+# Error Handling (Unified Go & DB)
 
-Expert-level error handling review for Go applications. Ensures proper error wrapping, context propagation, and error checking that preserves error chains and enables proper timeout/cancellation handling.
+Expert-level review for error handling in Go services using GORM and PostgreSQL. Ensures errors are correctly identified, preserved via wrapping, mapped to domain errors, and retried where appropriate.
 
 ## When to Apply
 
 Use this skill when:
-- Reviewing error propagation patterns
-- Checking context usage and cancellation
-- Auditing error wrapping with %w vs %v
-- Investigating timeout or cancellation issues
-- Verifying nil checks for interfaces
-- Ensuring errors.Is/As usage
+- Reviewing general Go error propagation and context usage
+- Debugging database errors (e.g., duplicate keys, serialization failures)
+- Auditing error wrapping with `%w` vs `%v`
+- Ensuring correct use of `errors.Is` / `errors.As`
+- Adding retry logic for serializable transactions or deadlocks
 
-## Rule Categories by Priority
+## Rule Categories
 
 | Priority | Count | Focus |
-|----------|-------|-------|
-| Critical | 3 | Prevents error chain loss, context leaks |
-| High | 3 | Correctness and reliability |
-| Medium | 1 | Code quality |
+|---|---|---|
+| **CRITICAL** | 6 | error chains, context leaks, PgError mapping, retries |
+| **HIGH** | 6 | propagation, Is/As usage, RowsAffected, deadlock detection |
+| **MEDIUM** | 2 | sentinel errors, structured logging |
 
-## Rules Covered (7 total)
+## Rules Covered (14 total)
 
-### Critical Issues (3)
+### Critical Issues (6)
+- `critical-error-wrapping` — Use `%w`, not `%v`, to preserve error chains
+- `critical-context-leak` — Always `defer cancel()` after context creation
+- `critical-error-shadow` — Don't shadow `err` in nested scopes
+- `critical-errors-is-as` — Use `errors.Is`/`As` for DB and wrapped errors
+- `critical-pg-error-mapping` — Map Postgres codes to domain errors at repo boundary
+- `critical-serialization-retry` — Retry transactions on `40001` serialization failure
 
-- `critical-error-wrapping` - Use %w for error wrapping, not %v
-- `critical-error-shadow` - Don't shadow err variable in nested scopes
-- `critical-context-leak` - Always defer cancel() after context creation
+### High-Impact Patterns (6)
+- `high-context-propagation` — Propagate context through the call chain
+- `high-error-is-as` — Prescriptive rule for using Is/As over string matching
+- `high-interface-nil` — Check for nil in interfaces correctly
+- `high-rows-affected` — Check `RowsAffected` after Update/Delete
+- `high-wrap-with-context` — Wrap DB errors with operation context
+- `high-deadlock-detection` — Handle `40P01` deadlocks as retryable
 
-### High-Impact Patterns (3)
-
-- `high-context-propagation` - Propagate context through call chain
-- `high-error-is-as` - Use errors.Is/As instead of ==
-- `high-interface-nil` - Check interface nil correctly
-
-### Medium Improvements (1)
-
-- `medium-sentinel-error-usage` - Use sentinel errors for stable categories
-
-## How to Use
-
-### For Error Handling Review
-
-1. Scan code for error handling patterns
-2. Check against rules in priority order (Critical first)
-3. Verify error wrapping preserves error chains
-4. Ensure context propagation for timeouts/cancellation
-5. Check for proper nil interface handling
-
-### Common Patterns
-
-**Error chain review**:
-```
-Check this code for proper error wrapping
-```
-
-**Context propagation audit**:
-```
-Verify context is propagated correctly
-```
-
-**Error checking patterns**:
-```
-Review error handling for wrapped errors
-```
+### Medium Improvements (2)
+- `medium-sentinel-error-usage` — Use sentinel errors for stable categories
+- `medium-structured-logging` — Log DB/Go errors with structured fields
 
 ## Trigger Phrases
 
-This skill activates when you say:
 - "Review error handling"
-- "Check error wrapping"
-- "Verify context propagation"
+- "Debug this DB error"
+- "23505 / 40001 / 40P01"
 - "Check for context leaks"
 - "Review error chains"
-- "Audit error patterns"
+- "Transaction retry"
+- "ErrRecordNotFound"
 
 ## Output Format
 
 ```
-## Critical Error Handling Issues: X
+## Critical Issues Found: X
 
-### [Rule Name] (Line Y)
-**Issue**: Brief description
-**Impact**: Lost error chain / Context leak / Wrong error check
-**Fix**: Suggested correction
+### [Rule ID] (Line Y)
+**Issue**: Description
+**Impact**: Context leak / Lost chain / Data inconsistency
+**Fix**: Suggested code
 **Example**:
 ```go
 // Corrected code
 ```
+```
 
 ## Related Skills
-
-- [golang-concurrency-safety](../concurrency-safety/SKILL.md) - For goroutine context patterns
-- [golang-clean-architecture](../clean-architecture/SKILL.md) - For error handling across layers
-
-## Philosophy
-
-Based on Go best practices:
-
-- **Error chains are valuable** - Use %w to preserve error context
-- **Context is essential** - Always propagate for cancellation/timeout
-- **Errors are values** - Use errors.Is/As for wrapped error checking
-- **Nil interfaces are tricky** - Check correctly to avoid bugs
-
-## Notes
-
-- Focus on error handling correctness
-- All examples show proper error wrapping patterns
-- Context propagation is critical for production systems
-- Related to concurrency but focused on error semantics
+- [gorm-query-patterns](../gorm-query-patterns/SKILL.md) — For `.Error` check safety
+- [concurrency-safety](../concurrency-safety/SKILL.md) — For context timeout patterns

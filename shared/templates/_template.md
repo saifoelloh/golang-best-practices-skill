@@ -1,31 +1,32 @@
 ---
 title: Rule Title Here
-impact: CRITICAL | HIGH | MEDIUM | ARCHITECTURE
-impactDescription: Brief description of impact (e.g., "Memory leaks", "20-50% performance improvement")
-tags: tag1, tag2, tag3
-source: Book Name - Chapter X
+impact: CRITICAL | HIGH | MEDIUM
+impactDescription: Brief description of impact (e.g., "SQL injection", "Full table scan on JOIN")
+tags: gorm, postgresql, tag1, tag2
+source: Source Name - Section/Chapter (e.g., "GORM Docs - Error Handling")
 ---
 
 ## Rule Title Here
 
-Brief explanation of the rule and why it matters. This should be clear and concise, explaining the implications of violating this rule.
+Brief explanation of the rule and why it matters. Should be clear and concise, explaining the implications of violating this rule in a GORM + PostgreSQL context.
 
 **Impact**: [CRITICAL/HIGH/MEDIUM] - [What happens if violated]
 
 ### Detection
 
 How to spot this issue in code:
-- Specific pattern to look for
+- Specific GORM method or SQL pattern to look for
 - Code smell indicators
-- AST patterns (if applicable)
+- Common anti-pattern shape
 
 ### Incorrect (Anti-Pattern)
 
 ```go
 // ❌ BAD - Explanation of what's wrong
-func badExample() {
+func (r *SomeRepository) BadMethod(ctx context.Context) error {
     // Code demonstrating the anti-pattern
     // with inline comments explaining the problem
+    return nil
 }
 ```
 
@@ -37,9 +38,10 @@ func badExample() {
 
 ```go
 // ✅ GOOD - Explanation of what's right
-func goodExample() {
+func (r *SomeRepository) GoodMethod(ctx context.Context) error {
     // Code demonstrating the correct pattern
     // with inline comments explaining the solution
+    return nil
 }
 ```
 
@@ -50,18 +52,20 @@ func goodExample() {
 ### Additional Context
 
 Any extra information, edge cases, or related patterns:
-- When to apply this rule
-- Exceptions (if any)
-- Related rules to consider
+- When this rule applies vs exceptions
+- Related rules in this skill or in golang-best-practices-skill
 - Performance implications
+- PostgreSQL-specific notes
 
 ### References
 
-- [Go Documentation](https://go.dev/doc/)
-- [Effective Go](https://go.dev/doc/effective_go)
-- Specific book chapter or blog post
+- [GORM Docs: Relevant Section](https://gorm.io/docs/)
+- [PostgreSQL Docs: Relevant Section](https://www.postgresql.org/docs/16/)
+- Book or blog reference if applicable
 
 ---
 
-**Rule Template Version**: 1.0  
-**Last Updated**: 2026-01-21
+**Rule Version**: 1.0
+**Last Updated**: 2026-03-13
+**Priority**: CRITICAL | HIGH | MEDIUM
+**Auto-fixable**: Yes | No | Partially
