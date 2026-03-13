@@ -1,15 +1,15 @@
 ---
 name: golang-idiomatic-go
-description: Idiomatic Go patterns review. Use when checking Go-specific idioms, interface design, or pointer usage. Ensures code follows Go conventions and best practices.
+description: Idiomatic Go style and best practices review. Use when checking interface design, pointer usage, or Go-specific idioms. Ensures code follows standard Go conventions and readability principles.
 license: MIT
 metadata:
   author: saifoelloh
-  version: "2.0.0"
+  version: "2.1.0"
   parent_skill: golang-best-practices
   sources:
     - "Learning Go: An Idiomatic Approach (Jon Bodner)"
     - "Effective Go"
-  last_updated: "2026-01-22"
+  last_updated: "2026-03-13"
 ---
 
 # Golang Idiomatic Patterns

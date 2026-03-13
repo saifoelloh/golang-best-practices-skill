@@ -1,10 +1,10 @@
 ---
 name: golang-best-practices
-description: Comprehensive Go code review meta-skill. Coordinates 5 specialized domain skills. For targeted reviews, use domain-specific skills (concurrency-safety, clean-architecture). For full audits, use this meta-skill.
+description: Comprehensive Go code review meta-skill. Coordinates 6 specialized domain skills. For targeted reviews, use domain-specific skills (concurrency-safety, clean-architecture). For full audits, use this meta-skill.
 license: MIT
 metadata:
   author: saifoelloh
-  version: "2.0.0"
+  version: "2.1.0"
   skill_type: meta
   sub_skills:
     - concurrency-safety
@@ -12,6 +12,7 @@ metadata:
     - error-handling
     - design-patterns
     - idiomatic-go
+    - database-repository
   sources:
     - "Learning Go: An Idiomatic Approach (Jon Bodner)"
     - "Concurrency in Go (Katherine Cox-Buday)"
@@ -19,21 +20,21 @@ metadata:
     - "Refactoring (Martin Fowler)"
     - "Design Patterns (Gang of Four)"
     - "Refactoring.Guru"
-  last_updated: "2026-01-22"
+  last_updated: "2026-03-13"
 ---
 
 # Golang Best Practices (Meta-Skill)
 
-Comprehensive Go code review skill coordinating **5 specialized domain skills** for complete code audits.
+Comprehensive Go code review skill coordinating **6 specialized domain skills** for complete code audits.
 
 > [!NOTE]
-> **v2.0.0 Update**: This skill now coordinates multiple focused domain skills. Use specific skills for targeted reviews or this meta-skill for comprehensive audits.
+> **v2.1.0 Update**: This meta-skill now coordinates 6 specialized domain skills, including the newly standardized Database & Repository skill.
 
 ## Available Skills
 
 ### 1. [Concurrency Safety](concurrency-safety/SKILL.md) ✅
 **12 rules** | Goroutines, channels, race conditions, deadlocks  
-**Status**: Active (v2.0.0)
+**Status**: Active (v2.1.0)
 
 Use when:
 - Reviewing code with goroutines or channels
@@ -44,7 +45,7 @@ Use when:
 
 ### 2. [Clean Architecture](clean-architecture/SKILL.md) ✅
 **9 rules** | Layer separation, dependency rules, gRPC patterns  
-**Status**: Active (v2.0.0)
+**Status**: Active (v2.1.0)
 
 Use when:
 - Auditing service architecture
@@ -55,7 +56,7 @@ Use when:
 
 ### 3. [Error Handling](error-handling/SKILL.md) ✅
 **7 rules** | Error wrapping, context, nil checks  
-**Status**: Active (v2.0.0)
+**Status**: Active (v2.1.0)
 
 Use when:
 - Reviewing error propagation
@@ -65,8 +66,8 @@ Use when:
 **Trigger phrases**: "Review error handling", "Check error wrapping", "Verify context propagation"
 
 ### 4. [Design Patterns](design-patterns/SKILL.md) ✅
-**13 rules** | Code smells, refactoring, Gang of Four patterns  
-**Status**: Active (v2.0.0)
+**13 rules** | Code smells, refactoring, Gang of Go patterns  
+**Status**: Active (v2.1.0)
 
 Use when:
 - Refactoring complex code
@@ -76,8 +77,8 @@ Use when:
 **Trigger phrases**: "Refactor this code", "Reduce complexity", "Apply design patterns"
 
 ### 5. [Idiomatic Go](idiomatic-go/SKILL.md) ✅
-**6 rules** | Go-specific idioms, interfaces, pointers  
-**Status**: Active (v2.0.0)
+**7 rules** | Go-specific idioms, interfaces, pointers  
+**Status**: Active (v2.1.0)
 
 Use when:
 - Ensuring idiomatic Go style
@@ -85,6 +86,17 @@ Use when:
 - Optimizing pointer usage
 
 **Trigger phrases**: "Is this idiomatic Go?", "Review Go style", "Check interface design"
+
+### 6. [Database & Repository](database-repository/SKILL.md) ✅
+**2 rules** | GORM identifier quoting, PostgreSQL compatibility  
+**Status**: Active (v2.1.0)
+
+Use when:
+- Reviewing Repository layer code
+- Ensuring PostgreSQL compatibility with GORM
+- Handling reserved keywords in SQL fragments
+
+**Trigger phrases**: "Review repository layer", "Check SQL quoting", "Verify PostgreSQL compatibility"
 
 ## When to Use This Meta-Skill
 
@@ -101,8 +113,8 @@ For targeted reviews, use specific skills above (e.g., just concurrency-safety o
 | Priority | Category | Impact | Prefix | Rule Count |
 |----------|----------|--------|--------|------------|
 | 1 | Critical Issues | CRITICAL | `critical-` | 8 |
-| 2 | High-Impact Patterns | HIGH | `high-` | 14 |
-| 3 | Medium Improvements | MEDIUM | `medium-` | 21 |
+| 2 | High-Impact Patterns | HIGH | `high-` | 15 |
+| 3 | Medium Improvements | MEDIUM | `medium-` | 22 |
 | 4 | Architecture | ARCHITECTURE | `arch-` | 5 |
 
 ## Quick Reference

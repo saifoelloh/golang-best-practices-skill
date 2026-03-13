@@ -4,12 +4,12 @@ description: Clean Architecture audit for Go services. Use when reviewing layere
 license: MIT
 metadata:
   author: saifoelloh
-  version: "2.0.0"
+  version: "2.1.0"
   parent_skill: golang-best-practices
   sources:
     - "Clean Architecture (Robert C. Martin)"
     - "Learning Go: An Idiomatic Approach (Jon Bodner)"
-  last_updated: "2026-01-22"
+  last_updated: "2026-03-13"
 ---
 
 # Golang Clean Architecture

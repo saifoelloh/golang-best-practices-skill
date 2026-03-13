@@ -1,7 +1,7 @@
 {
   "name": "golang-best-practices",
-  "version": "2.0.0",
-  "description": "Comprehensive Go code review meta-skill coordinating 5 specialized domain skills. Use for complete audits or targeted reviews of concurrency, architecture, error handling, design patterns, and idiomatic Go.",
+  "version": "2.1.0",
+  "description": "Comprehensive Go code review meta-skill coordinating 6 specialized domain skills. Use for complete audits or targeted reviews of concurrency, architecture, error handling, design patterns, database, and idiomatic Go.",
   "type": "meta-skill",
   "author": {
     "name": "saifoelloh",
@@ -13,8 +13,8 @@
     "type": "git",
     "url": "https://github.com/saifoelloh/golang-best-practices-skill"
   },
-  "categories": ["golang", "code-review", "best-practices", "clean-architecture", "concurrency"],
-  "tags": ["go", "golang", "linting", "code-quality", "refactoring", "architecture", "concurrency-safety"],
+  "categories": ["golang", "code-review", "best-practices", "clean-architecture", "concurrency", "database"],
+  "tags": ["go", "golang", "linting", "code-quality", "refactoring", "architecture", "concurrency-safety", "database", "gorm"],
   "sub_skills": [
     {
       "name": "concurrency-safety",
@@ -40,13 +40,18 @@
       "name": "idiomatic-go",
       "rules": 7,
       "description": "Go-specific idioms, interfaces, pointers"
+    },
+    {
+      "name": "database-repository",
+      "rules": 2,
+      "description": "GORM identifier quoting, PostgreSQL compatibility, Repository patterns"
     }
   ],
   "rules": {
-    "total": 48,
+    "total": 50,
     "critical": 8,
-    "high": 14,
-    "medium": 26,
+    "high": 15,
+    "medium": 27,
     "architecture": 5
   },
   "sources": [
@@ -57,6 +62,6 @@
     "Design Patterns (Gang of Four)",
     "Refactoring.Guru"
   ],
-  "last_updated": "2026-01-22",
+  "last_updated": "2026-03-13",
   "changelog_url": "https://github.com/saifoelloh/golang-best-practices-skill/blob/main/CHANGELOG.md"
 }

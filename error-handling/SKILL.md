@@ -4,12 +4,12 @@ description: Go error handling review. Use when checking error wrapping, context
 license: MIT
 metadata:
   author: saifoelloh
-  version: "2.0.0"
+  version: "2.1.0"
   parent_skill: golang-best-practices
   sources:
     - "Learning Go: An Idiomatic Approach (Jon Bodner)"
     - "Concurrency in Go (Katherine Cox-Buday)"
-  last_updated: "2026-01-22"
+  last_updated: "2026-03-13"
 ---
 
 # Golang Error Handling

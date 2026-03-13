@@ -4,13 +4,13 @@ description: Go design patterns and refactoring skill. Use when refactoring comp
 license: MIT
 metadata:
   author: saifoelloh
-  version: "2.0.0"
+  version: "2.1.0"
   parent_skill: golang-best-practices
   sources:
     - "Refactoring (Martin Fowler)"
     - "Design Patterns (Gang of Four)"
     - "Refactoring.Guru"
-  last_updated: "2026-01-22"
+  last_updated: "2026-03-13"
 ---
 
 # Golang Design Patterns & Refactoring
