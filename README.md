@@ -3,15 +3,15 @@
 > Production-ready Go code review skill for AI agents based on authoritative sources
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Rules](https://img.shields.io/badge/Rules-48-blue.svg)](.)
-[![Version](https://img.shields.io/badge/Version-2.0.0-green.svg)](./metadata.json)
-[![Skills](https://img.shields.io/badge/Skills-5_domains-purple.svg)](#-available-skills)
+[![Rules](https://img.shields.io/badge/Rules-50-blue.svg)](.)
+[![Version](https://img.shields.io/badge/Version-2.1.0-green.svg)](./metadata.json)
+[![Skills](https://img.shields.io/badge/Skills-6_domains-purple.svg)](#-available-skills)
 
-**v2.0.0**: Now organized as **5 specialized domain skills** for faster, more focused code reviews.
+**v2.1.0**: Now organized as **6 specialized domain skills** for faster, more focused code reviews.
 
 ## 📋 Overview
 
-This skill contains **48 rules** across 5 specialized domains for comprehensive Go code review.
+This skill contains **50 rules** across 6 specialized domains for comprehensive Go code review.
 
 ## 📚 Available Skills
 
@@ -22,11 +22,12 @@ This skill contains **48 rules** across 5 specialized domains for comprehensive 
 | **[Error Handling](error-handling/)** | 7 | Error wrapping, context propagation | "Review error handling" |
 | **[Design Patterns](design-patterns/)** | 13 | Refactoring, code smells | "Refactor this code" |
 | **[Idiomatic Go](idiomatic-go/)** | 7 | Go-specific idioms | "Is this idiomatic Go?" |
+| **[Database & Repository](database-repository/)** | 2 | GORM, PostgreSQL, SQL quoting | "Review repository layer" |
 
 **Priority Distribution**:
 - **8 CRITICAL** - Prevents production bugs, crashes, and failures
-- **14 HIGH** - Improves reliability and architecture  
-- **26 MEDIUM** - Enhances code quality and idioms
+- **15 HIGH** - Improves reliability and architecture  
+- **27 MEDIUM** - Enhances code quality and idioms
 - **5 ARCHITECTURE** - Clean Architecture compliance
 
 All rules are evidence-based from authoritative sources:
@@ -63,12 +64,13 @@ cp -r golang-best-practices-skill ~/.agent-skills/
 "Review error handling"               → Error Handling skill
 "Refactor this complex function"      → Design Patterns skill  
 "Is this idiomatic Go?"               → Idiomatic Go skill
+"Review repository layer"             → Database & Repository skill
 ```
 
 ## 🎯 Why Multi-Skill Architecture?
 
 **v1.x**: Single monolithic skill with 43 rules  
-**v2.0**: 5 focused skills with 48 rules
+**v2.1**: 6 focused skills with 50 rules
 
 ### Benefits
 
@@ -106,6 +108,10 @@ golang-best-practices-skill/
 │   ├── SKILL.md
 │   └── rules/
 │
+├── database-repository/        # 2 rules
+│   ├── SKILL.md
+│   └── rules/                  # PostgreSQL & GORM rules
+│
 ├── shared/                     # Common resources
 │   ├── _categories.md
 │   └── templates/
@@ -124,23 +130,11 @@ Detects common concurrency bugs: goroutine leaks, race conditions, deadlocks, an
 
 **Rules**: 5 Critical + 4 High + 3 Medium
 
-**Examples**:
-- Goroutines without exit conditions
-- Missing context cancellation
-- Race conditions from concurrent access
-- Channel deadlocks
-
 ### 2. Clean Architecture (9 rules)
 
 Ensures proper layering, dependency rules, and separation of concerns in gRPC → Usecase → Repository → Domain architectures.
 
 **Rules**: 4 High + 5 Architecture
-
-**Examples**:
-- Business logic in handlers
-- Repository with business rules
-- Dependencies not injected
-- Domain importing infrastructure
 
 ### 3. Error Handling (7 rules)
 
@@ -148,22 +142,11 @@ Ensures proper error wrapping, context propagation, and error checking.
 
 **Rules**: 3 Critical + 3 High + 1 Medium
 
-**Examples**:
-- Error wrapping with %v instead of %w
-- Context leaks without defer cancel()
-- Wrong error checking for wrapped errors
-
 ### 4. Design Patterns (13 rules)
 
 Detects code smells and suggests pattern-based refactoring.
 
 **Rules**: 2 High + 11 Medium
-
-**Examples**:
-- God Objects (300+ line functions)
-- Primitive obsession
-- Long parameter lists
-- Feature envy
 
 ### 5. Idiomatic Go (7 rules)
 
@@ -171,11 +154,16 @@ Ensures code follows Go conventions and best practices.
 
 **Rules**: 1 High + 6 Medium
 
+### 6. Database & Repository (2 rules)
+
+Focuses on safe GORM usage, PostgreSQL compatibility, and identifier quoting.
+
+**Rules**: 1 High + 1 Medium
+
 **Examples**:
-- Wrong method receivers
-- Fat interfaces
-- Pointer overuse
-- Interface pollution
+- Reserved keyword quoting in raw SQL
+- Redundant quoting in GORM Select
+- PostgreSQL compatibility patterns
 
 ## ✨ Features
 
